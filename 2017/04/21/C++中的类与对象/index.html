@@ -1,0 +1,729 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="C++的基本语法include与C语言中相同，使用#include能够包含系统库和头文件。不能使用#import来进行包含。在C++中所要包含的基础库是iostream。当然也能使用C语言中的标准输入输出库stdio.h，但是在使用时建议使用在C++中的写法。">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中的类与对象">
+<meta property="og:url" content="http://yoursite.com/2017/04/21/C++中的类与对象/index.html">
+<meta property="og:site_name" content="朱家聪的博客">
+<meta property="og:description" content="C++的基本语法include与C语言中相同，使用#include能够包含系统库和头文件。不能使用#import来进行包含。在C++中所要包含的基础库是iostream。当然也能使用C语言中的标准输入输出库stdio.h，但是在使用时建议使用在C++中的写法。">
+<meta property="og:updated_time" content="2017-04-21T09:06:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++中的类与对象">
+<meta name="twitter:description" content="C++的基本语法include与C语言中相同，使用#include能够包含系统库和头文件。不能使用#import来进行包含。在C++中所要包含的基础库是iostream。当然也能使用C语言中的标准输入输出库stdio.h，但是在使用时建议使用在C++中的写法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/21/C++中的类与对象/"/>
+
+
+
+
+
+  <title> C++中的类与对象 | 朱家聪的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">朱家聪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/21/C++中的类与对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱家聪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱家聪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                C++中的类与对象
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-21T11:09:02+08:00">
+                2017-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="C-的基本语法"><a href="#C-的基本语法" class="headerlink" title="C++的基本语法"></a>C++的基本语法</h1><h2 id="include"><a href="#include" class="headerlink" title="include"></a>include</h2><p>与C语言中相同，使用#include能够包含系统库和头文件。不能使用#import来进行包含。在C++中所要包含的基础库是iostream。当然也能使用C语言中的标准输入输出库stdio.h，但是在使用时建议使用在C++中的写法。</p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;   //在C++中的写法，用于包含 stdio.h</span></span></div></pre></td></tr></table></figure>
+<h2 id="cout输出"><a href="#cout输出" class="headerlink" title="cout输出"></a>cout输出</h2><p>cout是在iostream中所定义的输出对象，用于向控制台输出数据。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World!"</span> &lt;&lt; <span class="built_in">endl</span>;</div></pre></td></tr></table></figure>
+<p>在这里用到了一个命名空间标识符“std”，引用他人对std的解释为：</p>
+<blockquote>
+<p> std:: 是个名称空间标示符，C++标准库中的函数或者对象都是在命名空间std中定义的，所以我们要使用标准函数库中的函数或对象都要使用std来限定。<br>在使用到iostream库中的函数时，需要使用std来进行调用，这么写会导致代码变复杂。所以可以在使用前声明std这个命名空间。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div></pre></td></tr></table></figure>
+<h1 id="C-中的类与对象"><a href="#C-中的类与对象" class="headerlink" title="C++中的类与对象"></a>C++中的类与对象</h1><p>在C++中，面向对象的概念和Objective-C中基本一致，所以在此只研究代码书写的格式以及两者之间不同的地方。</p>
+<h2 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h2><p>使用class来定一个类，这里以User类为例，这个类有三个私有属性：userID,username,password。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span>&#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> userid;</div><div class="line">    <span class="built_in">string</span> username;</div><div class="line">    <span class="built_in">string</span> password;</div><div class="line">        </div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">login</span><span class="params">(<span class="built_in">string</span> username, <span class="built_in">string</span> password)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>-&gt;username = username;</div><div class="line">        <span class="keyword">this</span>-&gt;password = password;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;password == <span class="string">"12345"</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>对于类中定义的属性有以下三种修饰符，可以用来定义属性的访问权限。由于面向对象的封装特效，一般我们在定义一个类时，都会将属性定义为私有类型，将方法定义为公共类型。</p>
+<blockquote>
+<p>private:      私有的，只能在当前类中的成员函数中调用<br>public:       公共的，可以在任意函数中调用<br>pretected:    受保护的，可以在当前类的成员函数中调用，也可以在派生类的成员函数中调用</p>
+</blockquote>
+<h2 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h2><p>在C++中，实例化一个对象有两种操作方法。分别为直接创建对象和使用new关键词来创建对象。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User user1;                     <span class="comment">//方法一</span></div><div class="line">User *user2 = <span class="keyword">new</span> User();       <span class="comment">//方法二</span></div></pre></td></tr></table></figure>
+<h3 id="方法一：直接实例化对象"><a href="#方法一：直接实例化对象" class="headerlink" title="方法一：直接实例化对象"></a>方法一：直接实例化对象</h3><p>直接使用User类来创建一个对象user1。此时所创建的对象user1保存在内存的栈区，由系统自动管理内存。当要调用对象的方法时，使用点语法进行调用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User user1;</div><div class="line">user1.login(<span class="string">"zhujiacong"</span>, <span class="string">"123456"</span>);</div></pre></td></tr></table></figure>
+<h3 id="方法二：使用new来实例化对象"><a href="#方法二：使用new来实例化对象" class="headerlink" title="方法二：使用new来实例化对象"></a>方法二：使用new来实例化对象</h3><p>使用new来实例化的对象，返回值为对象所在的内存地址（指针）。类似于C语言中的malloc()函数，系统会在内存的堆区为对象开辟一块空间，并且需要用户手动管理内存。在使用结束需要使用delete来释放对象所占内存。由于所接收到的是对象所在的内存地址，所以不能使用点语法来访问对象的方法，而是改用箭头符号。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">User *user2 = <span class="keyword">new</span> User();</div><div class="line">user2-&gt;login(<span class="string">"zhujiacong"</span>, <span class="string">"123456"</span>);</div><div class="line"><span class="keyword">delete</span> user2;</div></pre></td></tr></table></figure>
+<h1 id="对象的一些用法和特性"><a href="#对象的一些用法和特性" class="headerlink" title="对象的一些用法和特性"></a>对象的一些用法和特性</h1><h2 id="this指针的使用"><a href="#this指针的使用" class="headerlink" title="this指针的使用"></a>this指针的使用</h2><p>在Objective-C中，可以使用self来替代当前对象。同样的在C++中可以使用this指针来替代当前对象。在User类的getUsername方法中可以使用this来指代当前对象，进而访问到对象中的属性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span>&#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> userID;</div><div class="line">    <span class="built_in">string</span> username;</div><div class="line">    <span class="built_in">string</span> password;</div><div class="line">    </div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getUsername</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;username;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而在类的成员函数中使用到当前对象的属性时，可以省略掉this指针。但是如果这个对象要做为一个整体引用时不能省略。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="built_in">string</span> <span class="title">getUsername</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> username;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="引用-amp"><a href="#引用-amp" class="headerlink" title="引用 &amp;"></a>引用 &amp;</h2><p>引用就是某一变量（目标）的一个别名，对引用的操作与对变量直接操作完全一样。引用的声明方法：类型标识符 &amp;引用名=目标变量名；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a; <span class="keyword">int</span> &amp;ra=a; <span class="comment">//定义引用ra,它是变量a的引用，即别名</span></div></pre></td></tr></table></figure>
+<ol>
+<li>&amp;在此不是求地址运算，而是起标识作用。</li>
+<li>类型标识符是指目标变量的类型。</li>
+<li>声明引用时，必须同时对其进行初始化。</li>
+<li><p>引用声明完毕后，相当于目标变量名有两个名称，即该目标原名称和引用名，且不能再把该引用名作为其他变量名的别名。</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ra=<span class="number">1</span>; 等价于 a=<span class="number">1</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>声明一个引用，不是新定义了一个变量，它只表示该引用名是目标变量名的一个别名，它本身不是一种数据类型，因此引用本身不占存储单元，系统也不给引用分配存储单元。故：对引用求地址，就是对目标变量求地址。&amp;ra与&amp;a相等。</p>
+</li>
+</ol>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>在C++的函数使用时，当函数的参数的体积比较大时，直接进行参数的传递，会将实参的值复制给形参。在复制的过程中会占用很大的内存空间和CPU资源。在C语言中通常使用指针的形式来进行参数的传递，而在C++中还可以使用引用类型来解决这个问题。相对来说，使用引用来做完函数的参数。代码更加简洁，也不会给实参重复分配内存空间。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;p1, <span class="keyword">int</span> &amp;p2)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> temp = p1;</div><div class="line">    p1 = p2;</div><div class="line">    p2 = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> i = <span class="number">5</span>;</div><div class="line"><span class="keyword">int</span> j = <span class="number">10</span>;</div><div class="line">swap(i, j);</div><div class="line"><span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">","</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</div></pre></td></tr></table></figure>
+<h3 id="常引用"><a href="#常引用" class="headerlink" title="常引用"></a>常引用</h3><p>常引用声明方式：const 类型标识符 &amp;引用名=目标变量名；用这种方式声明的引用，不能通过引用对目标变量的值进行修改,从而使引用的目标成为const，达到了引用的安全性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a ;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ra=a;</div><div class="line">ra=<span class="number">1</span>; <span class="comment">//错误</span></div><div class="line">a=<span class="number">1</span>; <span class="comment">//正确</span></div></pre></td></tr></table></figure>
+<p>假设有如下函数声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="built_in">string</span> <span class="title">foo</span><span class="params">( )</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">(<span class="built_in">string</span> &amp; s)</span></span>;</div><div class="line"><span class="comment">//那么下面的表达式将是非法的：</span></div><div class="line">bar(foo( ));</div><div class="line">bar(<span class="string">"hello world"</span>);</div></pre></td></tr></table></figure>
+<p>　　原因在于foo( )和”hello world”串都会产生一个临时对象，而在C++中，这些临时对象都是const类型的。因此上面的表达式就是试图将一个const类型的对象转换为非const类型，这是非法的。引用型参数应该在能被定义为const的情况下，尽量定义为const 。</p>
+<h3 id="引用作为函数的返回值"><a href="#引用作为函数的返回值" class="headerlink" title="引用作为函数的返回值"></a>引用作为函数的返回值</h3><p>引用类型也能够作为函数的返回值使用，但是在使用时必须要注意，不能返回一个局部变量的引用。因为局部变量在函数执行完毕之后会自动释放内存。而引用并不会创建新的变量，而是引用向这个已经被释放了的局部变量。这样是一种不安全的操作。一般引用作为返回值多用在类的成员函数中用于返回当前对象。这样可以节省一次值的复制操作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> s = a + b;</div><div class="line">    <span class="keyword">return</span> s;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="构造函数和复制构造函数"><a href="#构造函数和复制构造函数" class="headerlink" title="构造函数和复制构造函数"></a>构造函数和复制构造函数</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>用于构造当前对象的函数，这个函数的函数名和当前类的类名一样，参数为需要构造的对象的各个值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">User(<span class="built_in">string</span> s1, <span class="built_in">string</span> s2)&#123;</div><div class="line">    username = s1;</div><div class="line">    password = s2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">User <span class="title">user1</span><span class="params">(<span class="string">"zhujiacong"</span>, <span class="string">"12345"</span>)</span></span>;  <span class="comment">//创建一个user1对象，并且自动初始化用户名和密码</span></div></pre></td></tr></table></figure>
+<h3 id="复制构造函数的调用时机"><a href="#复制构造函数的调用时机" class="headerlink" title="复制构造函数的调用时机"></a>复制构造函数的调用时机</h3><p>当我们在初始化一个对象时，需要从另一个已有对象进行属性值的复制，此时就会调用==复制构造函数==。如下代码创建的user2和user3中的属性的值和user1完全一致。但是通过打印变量所在的内存地址可知他们和user1并不是同一个对象。这个机制类似于OC中的copy方法，是一种深拷贝。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">User user1;</div><div class="line">user1.setUsername(<span class="string">"zhujiacong"</span>);</div><div class="line">user1.setPassword(<span class="string">"123456"</span>);</div><div class="line">user1.printUserInfo();</div><div class="line"></div><div class="line"><span class="function">User <span class="title">user2</span><span class="params">(user1)</span></span>;</div><div class="line">user2.printUserInfo();</div><div class="line">User user3 = user1;</div><div class="line">user3.printUserInfo();</div></pre></td></tr></table></figure>
+<p>还有两种情况下系统也会调用复制构造函数分别是：</p>
+<ol>
+<li>对象作为函数的实参，并且形参是非引用类型。</li>
+<li>对象作为函数的返回值，并且为非引用类型。</li>
+</ol>
+<h3 id="自定义的复制构造函数"><a href="#自定义的复制构造函数" class="headerlink" title="自定义的复制构造函数"></a>自定义的复制构造函数</h3><p>在当前类没有自定义的复制构造函数时，系统会自动的给这个类添加默认的复制构造函数。默认复制构造函数的原理是简单的对当前对象中的每一个属性的值进行简单的复制。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">User(<span class="keyword">const</span> User &amp;u)&#123;</div><div class="line">    username = u.username;</div><div class="line">    password = u.password;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">User <span class="title">user2</span><span class="params">(user1)</span></span>;              <span class="comment">//将user1的值进行复制，并且初始化给user2</span></div></pre></td></tr></table></figure>
+<p>当这个类中存在指针变量，或者类中有动态分配的内存时。自动的复制构造函数不能够很好的进行数值的复制(例如无法合理的分配堆区内存)。此时就需要手动定义复制构造函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function">User <span class="title">user1</span><span class="params">(<span class="string">"zhujiacong"</span>, <span class="string">"12345"</span>)</span></span>;</div><div class="line">user1.p = <span class="built_in">malloc</span>(<span class="number">100</span>);</div><div class="line"><span class="built_in">cout</span> &lt;&lt; user1.p &lt;&lt;<span class="built_in">endl</span>;</div><div class="line"><span class="function">User <span class="title">user2</span><span class="params">(user1)</span></span>;</div><div class="line"><span class="built_in">cout</span> &lt;&lt; user2.p &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    </div><div class="line"><span class="comment">//输出如下</span></div><div class="line"><span class="number">0x100300160</span></div><div class="line"><span class="number">0x0</span></div><div class="line">Program ended with <span class="built_in">exit</span> code: <span class="number">0</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/21/博客，一个美好的开始/" rel="prev" title="博客，一个美好的开始">
+                博客，一个美好的开始 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="朱家聪" />
+          <p class="site-author-name" itemprop="name">朱家聪</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-的基本语法"><span class="nav-number">1.</span> <span class="nav-text">C++的基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#include"><span class="nav-number">1.1.</span> <span class="nav-text">include</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cout输出"><span class="nav-number">1.2.</span> <span class="nav-text">cout输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-中的类与对象"><span class="nav-number">2.</span> <span class="nav-text">C++中的类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类的定义"><span class="nav-number">2.1.</span> <span class="nav-text">类的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的创建"><span class="nav-number">2.2.</span> <span class="nav-text">对象的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：直接实例化对象"><span class="nav-number">2.2.1.</span> <span class="nav-text">方法一：直接实例化对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：使用new来实例化对象"><span class="nav-number">2.2.2.</span> <span class="nav-text">方法二：使用new来实例化对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象的一些用法和特性"><span class="nav-number">3.</span> <span class="nav-text">对象的一些用法和特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#this指针的使用"><span class="nav-number">3.1.</span> <span class="nav-text">this指针的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用-amp"><span class="nav-number">3.2.</span> <span class="nav-text">引用 &</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">3.2.1.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常引用"><span class="nav-number">3.2.2.</span> <span class="nav-text">常引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用作为函数的返回值"><span class="nav-number">3.2.3.</span> <span class="nav-text">引用作为函数的返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数和复制构造函数"><span class="nav-number">3.3.</span> <span class="nav-text">构造函数和复制构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数"><span class="nav-number">3.3.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制构造函数的调用时机"><span class="nav-number">3.3.2.</span> <span class="nav-text">复制构造函数的调用时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义的复制构造函数"><span class="nav-number">3.3.3.</span> <span class="nav-text">自定义的复制构造函数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱家聪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
