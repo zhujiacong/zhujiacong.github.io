@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="继承与派生基本概念在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。 12345678910111213//定义基类 Personclass Person&amp;#123;private:    string name;    char sex;&amp;#125;;//派生子类class">
+<meta name="description" content="继承与派生基本概念在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++中的类与对象（三）">
 <meta property="og:url" content="http://yoursite.com/2017/04/26/C-中的类与对象（三）/index.html">
 <meta property="og:site_name" content="朱家聪的博客">
-<meta property="og:description" content="继承与派生基本概念在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。 12345678910111213//定义基类 Personclass Person&amp;#123;private:    string name;    char sex;&amp;#125;;//派生子类class">
-<meta property="og:updated_time" content="2017-04-27T09:13:28.000Z">
+<meta property="og:description" content="继承与派生基本概念在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。">
+<meta property="og:updated_time" content="2017-04-27T09:18:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++中的类与对象（三）">
-<meta name="twitter:description" content="继承与派生基本概念在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。 12345678910111213//定义基类 Personclass Person&amp;#123;private:    string name;    char sex;&amp;#125;;//派生子类class">
+<meta name="twitter:description" content="继承与派生基本概念在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。">
 
 
 
@@ -322,7 +322,7 @@
       
 
       
-        <h1 id="继承与派生"><a href="#继承与派生" class="headerlink" title="继承与派生"></a>继承与派生</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。</p>
+        <h1 id="继承与派生"><a href="#继承与派生" class="headerlink" title="继承与派生"></a>继承与派生</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>在C++中，继承和派生的概念基本与Objective-C相同。子类继承于基类，基类中所有的成员都会继承给子类，包括成员变量和成员函数。子类也能够定义新的成员变量和成员函数。<br><a id="more"></a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义基类 Person</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>&#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">string</span> name;</div><div class="line">    <span class="keyword">char</span> sex;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//派生子类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> :</span> <span class="keyword">public</span> Person&#123;      </div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> score;</div><div class="line">    <span class="keyword">int</span> num;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>以上述代码为例，Student类继承于Person类。对于Student类来说，成员变量有两部分组成。第一部分是继承自Person类的name和sex，第二部分是派生类中所定义的score和num。派生类的定义格式如下所示：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> 派生类名 :</span> 继承方式 基类名 &#123;</div><div class="line">    派生的成员变量和函数</div><div class="line">&#125;</div></pre></td></tr></table></figure>
