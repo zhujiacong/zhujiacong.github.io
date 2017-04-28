@@ -1,0 +1,732 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2d-x," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="开发准备开发设备：MacBook Pro（Retina 显示屏，13 英寸，2014 年中）CPU：2.6 GHz Intel Core i5内存：8 GB 1600 MHz DDR3系统版本：macOS 10.12.4IDE：Xcode Version 8.0 (8A218a)参考书籍：Cocos2d-x实战 C++卷（第二版）关东升著">
+<meta name="keywords" content="Cocos2d-x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2d-x开发准备">
+<meta property="og:url" content="http://yoursite.com/2017/04/28/Cocos2d-x开发准备/index.html">
+<meta property="og:site_name" content="朱家聪的博客">
+<meta property="og:description" content="开发准备开发设备：MacBook Pro（Retina 显示屏，13 英寸，2014 年中）CPU：2.6 GHz Intel Core i5内存：8 GB 1600 MHz DDR3系统版本：macOS 10.12.4IDE：Xcode Version 8.0 (8A218a)参考书籍：Cocos2d-x实战 C++卷（第二版）关东升著">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/123.png?e=1493363973&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:-P-Ldrf_teVmZV4elA5-HcChMiA">
+<meta property="og:updated_time" content="2017-04-28T07:57:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2d-x开发准备">
+<meta name="twitter:description" content="开发准备开发设备：MacBook Pro（Retina 显示屏，13 英寸，2014 年中）CPU：2.6 GHz Intel Core i5内存：8 GB 1600 MHz DDR3系统版本：macOS 10.12.4IDE：Xcode Version 8.0 (8A218a)参考书籍：Cocos2d-x实战 C++卷（第二版）关东升著">
+<meta name="twitter:image" content="http://op3ueeezt.bkt.clouddn.com/123.png?e=1493363973&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:-P-Ldrf_teVmZV4elA5-HcChMiA">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/28/Cocos2d-x开发准备/"/>
+
+
+
+
+
+  <title> Cocos2d-x开发准备 | 朱家聪的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">朱家聪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/Cocos2d-x开发准备/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱家聪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱家聪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2d-x开发准备
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T09:24:28+08:00">
+                2017-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h1><p>开发设备：MacBook Pro（Retina 显示屏，13 英寸，2014 年中）<br>CPU：2.6 GHz Intel Core i5<br>内存：8 GB 1600 MHz DDR3<br>系统版本：macOS 10.12.4<br>IDE：Xcode Version 8.0 (8A218a)<br>参考书籍：Cocos2d-x实战 C++卷（第二版）关东升著</p>
+<a id="more"></a>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>参考Cocos的<a href="http://www.cocos.com/docs/native/v3/getting-started/setting-up-development-environments-on-mac-with-xcode/zh.html" target="_blank" rel="external">官方文档</a>可以快速搭建一个Cocos2d-x的HelloWorld工程。</p>
+<h3 id="下载Cocos2d-x"><a href="#下载Cocos2d-x" class="headerlink" title="下载Cocos2d-x"></a>下载Cocos2d-x</h3><p>前往<a href="http://cocos2d-x.org/download" target="_blank" rel="external">cocos2d-x.org/download</a>下载Cocos2d-x的工具包。现版本有<code>3.15</code>和<code>2.2.6</code>两个版本可以使用，选择<code>3.15</code>版本（319MB）进行下载。下载完成解压后放到一个常用路径中去。这里我把解压包发到了 <code>/Document</code>的根目录下。完成后使用终端进入到这个文件夹中<code>/Users/ZhuJiaCong/Documents/cocos2d-x-3.15</code>。这个下载完成后的文件夹可以理解问Cocos2d-x游戏引擎的源文件，我们今后创建的每一个工程都需要通过这个源文件来创建。</p>
+<h3 id="创建HelloWorld工程项目"><a href="#创建HelloWorld工程项目" class="headerlink" title="创建HelloWorld工程项目"></a>创建HelloWorld工程项目</h3><p>在Cocos2d-x引擎中，为我们提供了一个新建工程的Python脚本。这个脚本的作用就是新建一个Cocos2d-x的项目。启用终端，找到Cocos2d-x引擎所在的文件夹。然后按照路径进入到子文件夹<code>/tools/cocos2d-console/bin/</code>。在这文件夹中就能找到这个Python脚本文件（cocos.py）。接下来要做的就是运行这个脚本文件来创建一个新的工程项目。在终端中输入如下指令：</p>
+<blockquote>
+<p>python cocos.py new HelloWorldDemo -p com.coco2dx.org -l cpp -d ~/Desktop</p>
+</blockquote>
+<pre><code>HelloWorldDemo为项目名称
+-p后面接包名
+-l后面接开发语言类型，有cpp, lua, js三种类型
+-d后面接项目存放的目录 ~/Desktop表示当前用户的桌面
+</code></pre><p>在运行这个脚本的时候，要注意的是运行cocos.py脚本要求系统安装了Python2.7以上版本。在终端中执行Pyhton指令能够查看当前系统中的Python版本号。</p>
+<pre><code>ZhuJiaCongdeMacBook-Pro:bin ZhuJiaCong$ python
+Python 2.7.10 (default, Feb  6 2017, 23:53:20) 
+[GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.34)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</code></pre><p>可以看出我的电脑已经安装了<code>2.7.10</code>版本的Python。如果版本过低或者没有安装，需要先前往<a href="https://www.python.org/" target="_blank" rel="external">python.org</a>下载更新版本的Python。</p>
+<h1 id="第一个Demo文件"><a href="#第一个Demo文件" class="headerlink" title="第一个Demo文件"></a>第一个Demo文件</h1><p>创建好第一个工程文件后，进入到这个工程文件夹。先来熟悉一下工程文件夹中的内容。</p>
+<pre><code>Classes                 //项目工程的通用类，我们所编写的代码基本都在此
+cocos2d                 //Cocos2d-x引擎的源代码
+Resources               //工程的资源文件
+CMakeLists.txt        
+proj.android            //安卓平台下代码
+proj.tizen              //Tizen平台，也是一种移动端系统
+proj.android-studio     //这个也是安卓平台下的代码
+proj.win10              //Windows 10以及WinPhone平台下的代码
+proj.ios_mac            //macOS或者iOS平台下的代码
+proj.win32              //其他版本Windows平台下的代码
+proj.linux              //Linux平台下的代码
+</code></pre><p>首先我们现在macOS/iOS平台中进行代码的开发，在开发完成后再移植到安卓或者其他系统中去。所以首先打开<code>proj.ios_mac</code>文件夹。在文件夹中可以看到一个Xcode项目文件，双击可以打开这个文件。编译运行这个文件就能够看到HelloWorldDemo工程在iPhone模拟器中运行的效果了。<br><img src="http://op3ueeezt.bkt.clouddn.com/123.png?e=1493363973&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:-P-Ldrf_teVmZV4elA5-HcChMiA" alt="123"></p>
+<h2 id="代码文件分析"><a href="#代码文件分析" class="headerlink" title="代码文件分析"></a>代码文件分析</h2><p>接下来我们简单的分析一下这个Demo工程中的代码文件。在<code>Classes</code>文件中，有四个文件。</p>
+<pre><code>AppDelegate.h
+AppDelegate.cpp
+HelloWorldScene.h
+HelloWorldScene.cpp
+</code></pre><p>做过iOS开发的朋友应该对AppDelegate一点也不陌生，这就是应用程序的代理类。简单看一下里面的代码就能理解他的工作原理。</p>
+<h3 id="AppDelegate"><a href="#AppDelegate" class="headerlink" title="AppDelegate"></a>AppDelegate</h3><blockquote>
+<p>AppDelegate.h</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span>  <span class="title">AppDelegate</span> :</span> <span class="keyword">private</span> cocos2d::Application</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    AppDelegate();</div><div class="line">    <span class="keyword">virtual</span> ~AppDelegate();</div><div class="line">    <span class="comment">//设置OpenGL</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">initGLContextAttrs</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//应用程序加载完成后调用的方法</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">applicationDidFinishLaunching</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//应用程序进入到后台时调用的方法</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidEnterBackground</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//应用程序退出后台时调用的方法</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationWillEnterForeground</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在AppDelegate.h文件中定义了AppDelegate这个类，用于处理和响应应用程序的的各种事件。当程序加载完成后会自动的调用<code>virtual bool applicationDidFinishLaunching();</code>方法。</p>
+<blockquote>
+<p>AppDelegate.cpp</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Cocos2d-x中的一个宏定义 作用是替换了 using namespace cocos2d</span></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="comment">//定义了几种屏幕分辨率</span></div><div class="line"><span class="keyword">static</span> cocos2d::Size designResolutionSize = cocos2d::Size(<span class="number">480</span>, <span class="number">320</span>);</div><div class="line"><span class="keyword">static</span> cocos2d::Size smallResolutionSize = cocos2d::Size(<span class="number">480</span>, <span class="number">320</span>);</div><div class="line"><span class="keyword">static</span> cocos2d::Size mediumResolutionSize = cocos2d::Size(<span class="number">1024</span>, <span class="number">768</span>);</div><div class="line"><span class="keyword">static</span> cocos2d::Size largeResolutionSize = cocos2d::Size(<span class="number">2048</span>, <span class="number">1536</span>);</div><div class="line"></div><div class="line"><span class="comment">//AppDelegate的构造函数</span></div><div class="line">AppDelegate::AppDelegate()</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"><span class="comment">//AppDelegate的析构函数</span></div><div class="line">AppDelegate::~AppDelegate() </div><div class="line">&#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> USE_AUDIO_ENGINE</span></div><div class="line">    AudioEngine::end();</div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> USE_SIMPLE_AUDIO_ENGINE</span></div><div class="line">    SimpleAudioEngine::end();</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//初始化OpenGL的上下文（context）属性</span></div><div class="line"><span class="keyword">void</span> AppDelegate::initGLContextAttrs()</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 设置 OpenGL 上下文的属性</span></div><div class="line">    <span class="comment">//red,green,blue,alpha,depth（深度缓存）,stencil（模版缓存）</span></div><div class="line">    GLContextAttrs glContextAttrs = &#123;<span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">24</span>, <span class="number">8</span>&#125;;</div><div class="line"></div><div class="line">    GLView::setGLContextAttrs(glContextAttrs);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// if you want to use the package manager to install more packages,  </span></div><div class="line"><span class="comment">// don't modify or remove this function</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">register_all_packages</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//flag for packages manager</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//应用程序加载完成后所调用的方法</span></div><div class="line"><span class="keyword">bool</span> AppDelegate::applicationDidFinishLaunching() &#123;</div><div class="line">    <span class="comment">// 初始化导演</span></div><div class="line">    <span class="keyword">auto</span> director = Director::getInstance();</div><div class="line">    <span class="keyword">auto</span> glview = director-&gt;getOpenGLView();</div><div class="line">    <span class="keyword">if</span>(!glview) &#123;</div><div class="line">    <span class="comment">//预编译指令，用于判断当前所运行设备平台</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)</span></div><div class="line">        <span class="comment">//创建OprnGL视图</span></div><div class="line">        glview = GLViewImpl::createWithRect(<span class="string">"HelloWorldDemo"</span>, cocos2d::Rect(<span class="number">0</span>, <span class="number">0</span>, designResolutionSize.width, designResolutionSize.height));</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">        glview = GLViewImpl::create(<span class="string">"HelloWorldDemo"</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">        <span class="comment">//设置导演类的OpenGL视图</span></div><div class="line">        director-&gt;setOpenGLView(glview);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 是否显示程序的状态信息（左下角的帧率）设置为false可以隐藏显示</span></div><div class="line">    director-&gt;setDisplayStats(<span class="literal">true</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 设定默认的计时器运行速率，1.0f/60 表示60分之1秒，即60FPS。</span></div><div class="line">    director-&gt;setAnimationInterval(<span class="number">1.0f</span> / <span class="number">60</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 屏幕分辨率适配</span></div><div class="line">    glview-&gt;setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);</div><div class="line">    <span class="keyword">auto</span> frameSize = glview-&gt;getFrameSize();</div><div class="line">    <span class="comment">// if the frame's height is larger than the height of medium size.</span></div><div class="line">    <span class="keyword">if</span> (frameSize.height &gt; mediumResolutionSize.height)</div><div class="line">    &#123;        </div><div class="line">        director-&gt;setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// if the frame's height is larger than the height of small size.</span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (frameSize.height &gt; smallResolutionSize.height)</div><div class="line">    &#123;        </div><div class="line">        director-&gt;setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// if the frame's height is smaller than the height of medium size.</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;        </div><div class="line">        director-&gt;setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));</div><div class="line">    &#125;   </div><div class="line">    </div><div class="line">    <span class="comment">//安装所有的包</span></div><div class="line">    register_all_packages();</div><div class="line"></div><div class="line">    <span class="comment">// 使用HelloWorld类创建第一个游戏场景</span></div><div class="line">    <span class="keyword">auto</span> scene = HelloWorld::createScene();</div><div class="line"></div><div class="line">    <span class="comment">// 运行这个游戏场景</span></div><div class="line">    director-&gt;runWithScene(scene);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 应用程序进入到后台</span></div><div class="line"><span class="keyword">void</span> AppDelegate::applicationDidEnterBackground() &#123;</div><div class="line">    <span class="comment">//停止动画效果</span></div><div class="line">    Director::getInstance()-&gt;stopAnimation();</div><div class="line">    <span class="comment">//停止音乐播放</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> USE_AUDIO_ENGINE</span></div><div class="line">    AudioEngine::pauseAll();</div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> USE_SIMPLE_AUDIO_ENGINE</span></div><div class="line">    SimpleAudioEngine::getInstance()-&gt;pauseBackgroundMusic();</div><div class="line">    SimpleAudioEngine::getInstance()-&gt;pauseAllEffects();</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 应用程序返回前台</span></div><div class="line"><span class="keyword">void</span> AppDelegate::applicationWillEnterForeground() &#123;</div><div class="line">    <span class="comment">//继续开始执行动画</span></div><div class="line">    Director::getInstance()-&gt;startAnimation();</div><div class="line">    <span class="comment">//继续播放音乐</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> USE_AUDIO_ENGINE</span></div><div class="line">    AudioEngine::resumeAll();</div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> USE_SIMPLE_AUDIO_ENGINE</span></div><div class="line">    SimpleAudioEngine::getInstance()-&gt;resumeBackgroundMusic();</div><div class="line">    SimpleAudioEngine::getInstance()-&gt;resumeAllEffects();</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="HelloWorldScene"><a href="#HelloWorldScene" class="headerlink" title="HelloWorldScene"></a>HelloWorldScene</h3><p>在AppDelegate中，我们发现程序调用了HelloWorld这个类的方法创建了一个场景对象，然后运行了这一个新创建的场景。所以接下来再简单的来了解一下HelloWorld这个场景的运行原理。</p>
+<blockquote>
+<p>HelloWorldScene.h</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> :</span> <span class="keyword">public</span> cocos2d::Scene</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">//创建场景函数，返回值为创建完成的场景对象</span></div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">Scene* <span class="title">createScene</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//初始化函数</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// 菜单回调函数，用于触摸菜单事件的回调</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// 宏定义</span></div><div class="line">    CREATE_FUNC(HelloWorld);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>从头文件可以看出，HelloWorld继承于cocos2d::Scene类。Scene（场景）是Cocos2d-x中非常重要的一个类，一个完整的游戏是由多个场景构成的。而之前在AppDelegate中出现的导演对象则负责这多个场景之间进行调度和切换。在这个类的定义中，使用到了一个宏定义<code>CREATE_FUNC();</code>。这个宏定义的作用是自动生成当前类的create方法。具体实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> HelloWorld* <span class="title">create</span><span class="params">()</span></span>&#123;</div><div class="line">    HelloWorld *pRet = <span class="keyword">new</span>(<span class="built_in">std</span>::nothrow) HelloWorld();</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (pRet &amp;&amp; pRet-&gt;init()) &#123;</div><div class="line">        pRet-&gt;autorelease();</div><div class="line">        <span class="keyword">return</span> pRet;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">delete</span> pRet;</div><div class="line">        pRet = <span class="literal">nullptr</span>;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看出<code>CREATE_FUNC();</code>这个宏定义的作用其实是创建了<code>HelloWorld</code>类的<code>create();</code>方法。在方法内部通过<code>new</code>来新建了一个对象。并且将这个对象加入了自动释放池中。最后返回了这个对象。</p>
+<blockquote>
+<p>HelloWorldScene.cpp</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建场景函数</span></div><div class="line">Scene* HelloWorld::createScene()</div><div class="line">&#123;</div><div class="line">    <span class="comment">//调用了之前使用宏定义生成的创建方法创建了当前的场景对象</span></div><div class="line">    <span class="keyword">return</span> HelloWorld::create();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//初始化方法，初始化当前对象</span></div><div class="line"><span class="keyword">bool</span> HelloWorld::init()</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 调用基类的初始化方法</span></div><div class="line">    <span class="keyword">if</span> ( !Scene::init() )</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 获取当前屏幕可视区域的尺寸</span></div><div class="line">    <span class="keyword">auto</span> visibleSize = Director::getInstance()-&gt;getVisibleSize();</div><div class="line">    <span class="comment">// 屏幕的原点</span></div><div class="line">    Vec2 origin = Director::getInstance()-&gt;getVisibleOrigin();</div><div class="line"></div><div class="line">    <span class="comment">// 创建一个菜单按钮，用来关闭当前程序</span></div><div class="line">    <span class="keyword">auto</span> closeItem = MenuItemImage::create(</div><div class="line">                                           <span class="string">"CloseNormal.png"</span>,</div><div class="line">                                           <span class="string">"CloseSelected.png"</span>,</div><div class="line">                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, </div><div class="line">                                           <span class="keyword">this</span>));</div><div class="line">    <span class="comment">// 设置关闭按钮的位置 Vec2是在Cocos框架中的一个二位坐标点类 </span></div><div class="line">    closeItem-&gt;setPosition(Vec2(origin.x + visibleSize.width - closeItem-&gt;getContentSize().width/<span class="number">2</span> ,</div><div class="line">                                origin.y + closeItem-&gt;getContentSize().height/<span class="number">2</span>));</div><div class="line"></div><div class="line">    <span class="comment">// 创建菜单对象，使用之前的关闭按钮来初始化</span></div><div class="line">    <span class="keyword">auto</span> menu = Menu::create(closeItem, <span class="literal">NULL</span>);</div><div class="line">    menu-&gt;setPosition(Vec2::ZERO);</div><div class="line">    <span class="comment">// 将菜单对象添加到当前的场景中</span></div><div class="line">    <span class="keyword">this</span>-&gt;addChild(menu, <span class="number">1</span>);</div><div class="line">    <span class="comment">// 创建一个Label对象，用于显示文字</span></div><div class="line">    <span class="comment">// 三个参数分别是 文字信息，字体，字号    </span></div><div class="line">    <span class="keyword">auto</span> label = Label::createWithTTF(<span class="string">"Hello World"</span>, <span class="string">"fonts/Marker Felt.ttf"</span>, <span class="number">24</span>);</div><div class="line">    </div><div class="line">    <span class="comment">// 设置Label的位置，定位在屏幕中心</span></div><div class="line">    label-&gt;setPosition(Vec2(origin.x + visibleSize.width/<span class="number">2</span>,</div><div class="line">                            origin.y + visibleSize.height - label-&gt;getContentSize().height));</div><div class="line">    <span class="comment">// 添加Label到当前场景中</span></div><div class="line">    <span class="keyword">this</span>-&gt;addChild(label, <span class="number">1</span>);</div><div class="line">    <span class="comment">// 创建一个精灵对象 此处用到了一个Logo图片，然后添加到当前场景中去</span></div><div class="line">    <span class="keyword">auto</span> sprite = Sprite::create(<span class="string">"HelloWorld.png"</span>);</div><div class="line">    sprite-&gt;setPosition(Vec2(visibleSize.width/<span class="number">2</span> + origin.x, visibleSize.height/<span class="number">2</span> + origin.y));</div><div class="line">    <span class="keyword">this</span>-&gt;addChild(sprite, <span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//菜单回调函数</span></div><div class="line"><span class="keyword">void</span> HelloWorld::menuCloseCallback(Ref* pSender)</div><div class="line">&#123;</div><div class="line">    <span class="comment">//关闭当前的场景，并且推出应用程序</span></div><div class="line">    Director::getInstance()-&gt;end();</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)</span></div><div class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2d-x/" rel="tag"># Cocos2d-x</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/28/Cocos2d-x-的核心概念/" rel="next" title="Cocos2d-x 的核心概念">
+                <i class="fa fa-chevron-left"></i> Cocos2d-x 的核心概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/26/C-中的类与对象（三）/" rel="prev" title="C++中的类与对象（三）">
+                C++中的类与对象（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="朱家聪" />
+          <p class="site-author-name" itemprop="name">朱家聪</p>
+           
+              <p class="site-description motion-element" itemprop="description">这里是一个学渣程序员的进步之路，而非技术大牛的心得分享。如在博客中出现技术错误，请各位兄弟联系我并改正：731340034@qq.com</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开发准备"><span class="nav-number">1.</span> <span class="nav-text">开发准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.1.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载Cocos2d-x"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载Cocos2d-x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建HelloWorld工程项目"><span class="nav-number">1.1.2.</span> <span class="nav-text">创建HelloWorld工程项目</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第一个Demo文件"><span class="nav-number">2.</span> <span class="nav-text">第一个Demo文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码文件分析"><span class="nav-number">2.1.</span> <span class="nav-text">代码文件分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AppDelegate"><span class="nav-number">2.1.1.</span> <span class="nav-text">AppDelegate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HelloWorldScene"><span class="nav-number">2.1.2.</span> <span class="nav-text">HelloWorldScene</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱家聪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
