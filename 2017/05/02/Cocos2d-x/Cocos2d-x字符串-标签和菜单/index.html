@@ -1,0 +1,695 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2d-x," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="字符串 标签和菜单字符串 String在Cocos2d-x中，能够使用三种类型的字符串  const char * C语言环境下的字符指针类型，用于表示字符串std::string  C++环境下字符串类型cocos2d::__String cocos2d-x中的字符串类型">
+<meta name="keywords" content="Cocos2d-x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2d-x 字符串 标签和菜单">
+<meta property="og:url" content="http://yoursite.com/2017/05/02/Cocos2d-x/Cocos2d-x字符串-标签和菜单/index.html">
+<meta property="og:site_name" content="朱家聪的博客">
+<meta property="og:description" content="字符串 标签和菜单字符串 String在Cocos2d-x中，能够使用三种类型的字符串  const char * C语言环境下的字符指针类型，用于表示字符串std::string  C++环境下字符串类型cocos2d::__String cocos2d-x中的字符串类型">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/Simulator%20Screen%20Shot%202017%E5%B9%B45%E6%9C%882%E6%97%A5%20%E4%B8%8B%E5%8D%883.30.46.png?e=1493713881&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:VR_LzZKTjtBdBomiQ03wRvxk2BY">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/font.png?e=1493717985&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:BxRv3stmvUA86ZvxoR1vKnHesRQ">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/AllFontLabel.png?e=1493718132&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:xXNwUVRVQI4RzopC_nzZceDlgSE">
+<meta property="og:image" content="http://images.cnitblog.com/blog/83792/201307/09175720-06dd3e800e3e4ee6b55edd6bb4579b14.png">
+<meta property="og:updated_time" content="2017-05-02T09:27:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2d-x 字符串 标签和菜单">
+<meta name="twitter:description" content="字符串 标签和菜单字符串 String在Cocos2d-x中，能够使用三种类型的字符串  const char * C语言环境下的字符指针类型，用于表示字符串std::string  C++环境下字符串类型cocos2d::__String cocos2d-x中的字符串类型">
+<meta name="twitter:image" content="http://op3ueeezt.bkt.clouddn.com/Simulator%20Screen%20Shot%202017%E5%B9%B45%E6%9C%882%E6%97%A5%20%E4%B8%8B%E5%8D%883.30.46.png?e=1493713881&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:VR_LzZKTjtBdBomiQ03wRvxk2BY">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/02/Cocos2d-x/Cocos2d-x字符串-标签和菜单/"/>
+
+
+
+
+
+  <title> Cocos2d-x 字符串 标签和菜单 | 朱家聪的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">朱家聪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/02/Cocos2d-x/Cocos2d-x字符串-标签和菜单/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱家聪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱家聪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2d-x 字符串 标签和菜单
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T13:54:45+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="字符串-标签和菜单"><a href="#字符串-标签和菜单" class="headerlink" title="字符串 标签和菜单"></a>字符串 标签和菜单</h1><h2 id="字符串-String"><a href="#字符串-String" class="headerlink" title="字符串 String"></a>字符串 String</h2><p>在Cocos2d-x中，能够使用三种类型的字符串</p>
+<blockquote>
+<p>const char * C语言环境下的字符指针类型，用于表示字符串<br>std::string  C++环境下字符串类型<br>cocos2d::__String cocos2d-x中的字符串类型</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="C和C-中的字符串类型转换"><a href="#C和C-中的字符串类型转换" class="headerlink" title="C和C++中的字符串类型转换"></a>C和C++中的字符串类型转换</h3><p>前两种类型的字符串在C++中已有使用过，这边简单介绍一下两者的互相转换。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用C语言类型的字符串来构造string</span></div><div class="line"><span class="built_in">string</span> s1 = <span class="built_in">string</span>(<span class="string">"Hello"</span>);</div><div class="line"><span class="keyword">const</span> <span class="keyword">char</span> * cString1 = <span class="string">"world"</span>;</div><div class="line"><span class="built_in">string</span> s2 = cString1;</div><div class="line"></div><div class="line"><span class="comment">//C++中的string转化为C语言中的字符串</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cString2 = s1.c_str();</div></pre></td></tr></table></figure>
+<h3 id="cocos2d-String"><a href="#cocos2d-String" class="headerlink" title="cocos2d::__String"></a>cocos2d::__String</h3><p>cocos2d::<strong>String是在cocos2d-x中的字符串类，它的设计模拟了Objective-C中的NSStri类。</strong>String也可以和其他两种字符串类型进行互相转换。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//构建字符串</span></div><div class="line">__String *hello = __String::create(<span class="string">"Hello"</span>);</div><div class="line"><span class="keyword">int</span> age = <span class="number">18</span>;</div><div class="line">__String *sayAge = __String::createWithFormat(<span class="string">"今年%d岁"</span>,age);</div><div class="line"></div><div class="line"><span class="comment">//和其他类型的字符串的相互转化</span></div><div class="line"><span class="comment">//__String -&gt; const char *</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">char</span> * cstring1 = hello-&gt;getCString();</div><div class="line"><span class="comment">//const char * -&gt; __String</span></div><div class="line">__String *cocosString1 = __String::createWithFormat(<span class="string">"%s"</span>, cstring1);</div><div class="line"><span class="comment">//std::string -&gt; __String</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> cppString1 = <span class="string">"hello cpp"</span>;</div><div class="line">__String *cocosString2 = __String::create(cppString1);</div><div class="line"><span class="comment">//__String -&gt; std::string</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> cppString2 = cocosString2-&gt;getCString();</div></pre></td></tr></table></figure>
+<h2 id="标签-Label"><a href="#标签-Label" class="headerlink" title="标签 Label"></a>标签 Label</h2><h3 id="Label类的基本使用"><a href="#Label类的基本使用" class="headerlink" title="Label类的基本使用"></a>Label类的基本使用</h3><p>在一个完整的游戏中，文字类型分为静态文字和动态文字。静态文字是不会随着游戏运行改变的文字，例如游戏Logo中的游戏名称。而动态文字则是随着用户的变化而发生变化的文字，例如用户名，战斗力数值等文字。一般来说静态文字可以有设计师在制作素材图片时直接绘制到图片中去，这样可以减少游戏运行是渲染文字的操作。而动态文字则常用Label来显示。</p>
+<p>Label标签类是在Cocos2d-x 3.X版本后推出的一个新的类，用于在游戏中显示字体。有着更快的缓存代理，更快的渲染速度，不同平台相同视觉效果等特点。Label类可以创建系统字体标签，TTF字体标签，位图字体标签。</p>
+<blockquote>
+<p>系统字体是指按照在当前运行平台操作系统中的字体，要使用系统字体标签需要保证所用的字体已经安装在我们的设备中。<br>TTF字体标签加载的是TTF字体文件显示文字的标签。<br>位图字体标签会加载两个文件，分别是纹理图集（.png）和字体坐标文件（.fnt）。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用系统字体类型创建Label</span></div><div class="line"><span class="keyword">auto</span> label1 = Label::createWithSystemFont(<span class="string">"Hello World System Font"</span>, <span class="string">"Arial"</span>, <span class="number">14</span>);</div><div class="line">label1-&gt;setPosition(origin.x + visibleSize.width / <span class="number">2</span>, origin.y + visibleSize.height - <span class="number">20</span>);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label1, <span class="number">1</span>);</div><div class="line"><span class="comment">//使用TTF创建Label</span></div><div class="line"><span class="keyword">auto</span> label2 = Label::createWithTTF(<span class="string">"Hello World TTF Font"</span>, <span class="string">"fonts/Marker Felt.ttf"</span>, <span class="number">20</span>);</div><div class="line">label2-&gt;setPosition(origin.x + visibleSize.width / <span class="number">2</span>, origin.y + visibleSize.height - <span class="number">50</span>);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label2, <span class="number">2</span>);</div><div class="line"><span class="comment">//使用位图字体创建Label 需要fnt文件和png纹理</span></div><div class="line"><span class="keyword">auto</span> label3 = Label::createWithBMFont(<span class="string">"fonts/bitmapFontTest2.fnt"</span>, <span class="string">"Hello World BM Font"</span>);</div><div class="line">label3-&gt;setPosition(origin.x + visibleSize.width / <span class="number">2</span>, origin.y + visibleSize.height - <span class="number">100</span>);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label3, <span class="number">3</span>);</div><div class="line"></div><div class="line"><span class="comment">//通过TTFConfig来创建TFF字体</span></div><div class="line"><span class="function">TTFConfig <span class="title">ttfConfig</span><span class="params">(<span class="string">"fonts/Marker Felt.ttf"</span>,</span></span></div><div class="line">                    <span class="number">36</span>,</div><div class="line">                    GlyphCollection::DYNAMIC);</div><div class="line"><span class="keyword">auto</span> label4 = Label::createWithTTF(ttfConfig, <span class="string">"Hello TTF Config 1"</span>);</div><div class="line">label4-&gt;setPosition(origin.x + visibleSize.width / <span class="number">2</span>, origin.y + visibleSize.height - <span class="number">150</span>);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label4, <span class="number">4</span>);</div><div class="line"></div><div class="line"><span class="comment">//设置Label外边框宽度(描边)</span></div><div class="line">ttfConfig.outlineSize = <span class="number">4</span>;</div><div class="line"><span class="keyword">auto</span> label5 = Label::createWithTTF(ttfConfig, <span class="string">"Hello TTF Config 2"</span>);</div><div class="line">label5-&gt;setPosition(origin.x + visibleSize.width / <span class="number">2</span>, origin.y + visibleSize.height - <span class="number">200</span>);</div><div class="line"><span class="comment">//设置字体阴影的颜色和偏移量</span></div><div class="line">label5-&gt;enableShadow(Color4B(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">128</span>), Size(<span class="number">4</span>,<span class="number">-4</span>));</div><div class="line"><span class="comment">//设置字体颜色</span></div><div class="line">label5-&gt;setColor(Color3B::RED);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label5 , <span class="number">5</span>);</div></pre></td></tr></table></figure>
+<p>运行结果:<br><img src="http://op3ueeezt.bkt.clouddn.com/Simulator%20Screen%20Shot%202017%E5%B9%B45%E6%9C%882%E6%97%A5%20%E4%B8%8B%E5%8D%883.30.46.png?e=1493713881&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:VR_LzZKTjtBdBomiQ03wRvxk2BY" alt="Simulator Screen Shot 2017年5月2日 下午3.30.46"></p>
+<h3 id="图片集标签"><a href="#图片集标签" class="headerlink" title="图片集标签"></a>图片集标签</h3><p>位图标签是将所有字体纹理储存在一个png文件中，然后在所对应的fnt文件中描述这个位图中每一个字所对应的图片的坐标位置和宽高的值。当系统需要渲染一段文字时，首先从fnt文件中读取出每个字的坐标值，然后到png图片中将这个字的图片抠出来显示在屏幕中。LabelAtlas图片集标签的原理类似于位图标签。在图片集标签中，只有一个储存文字纹理的png图片，所有文字在这个纹理中拥有相同的宽和高，并且有固定的排列顺序。所以不再需要fnt文件来记录每个文字所对应的坐标值了。</p>
+<p><img src="http://op3ueeezt.bkt.clouddn.com/font.png?e=1493717985&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:BxRv3stmvUA86ZvxoR1vKnHesRQ" alt="font"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> label6 = LabelAtlas::create(<span class="string">"ABCDEF"</span>,      <span class="comment">//显示的文字内容</span></div><div class="line">                                 <span class="string">"fonts/tuffy_bold_italic-charmap.png"</span>, <span class="comment">//纹理图片</span></div><div class="line">                                 <span class="number">44</span>,            <span class="comment">//每个文字的宽度</span></div><div class="line">                                 <span class="number">62</span>,            <span class="comment">//每个文字的高度</span></div><div class="line">                                 <span class="string">' '</span>);          <span class="comment">//起始文字</span></div><div class="line">label6-&gt;setPosition(origin.x + visibleSize.width / <span class="number">2</span>, origin.y + visibleSize.height - <span class="number">210</span>);</div><div class="line">label6-&gt;setAnchorPoint(Vec2(<span class="number">0.5</span>, <span class="number">0.5</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label6);</div></pre></td></tr></table></figure>
+<p><img src="http://op3ueeezt.bkt.clouddn.com/AllFontLabel.png?e=1493718132&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:xXNwUVRVQI4RzopC_nzZceDlgSE" alt="AllFontLabel"></p>
+<h2 id="菜单-Menu"><a href="#菜单-Menu" class="headerlink" title="菜单 Menu"></a>菜单 Menu</h2><p>菜单类Menu，继承于Layer。相关的类有菜单项MenuItem，MenuItem继承于Node。每个MenuItem有三种不同的状态：正常，选中，不可用。在MenuItem下又能派生出多个子类。MenuItemLabel，MenuItemSprite和MenuItemToggle。其中MenuItemLabel类是文本菜单，有两个子类：MenuItemAtlasFont和MenuItemFont。MenuItemSprite是精灵菜单，有一个子类MenuItemImage。MenuItemToggle是开关菜单类。<br><img src="http://images.cnitblog.com/blog/83792/201307/09175720-06dd3e800e3e4ee6b55edd6bb4579b14.png" alt=""></p>
+<h3 id="文本菜单"><a href="#文本菜单" class="headerlink" title="文本菜单"></a>文本菜单</h3><p>文本菜单项类MenuItemLabel只能用于显示文本，包括MenuItemFont和MenuItemAtlasFont两个子类。其本身是一个抽象类，具体在使用时都是使用它的两个子类来实现具体功能。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2d-x/" rel="tag"># Cocos2d-x</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/28/Cocos2d-x/Cocos2d-x-的核心概念/" rel="prev" title="Cocos2d-x 的核心概念">
+                Cocos2d-x 的核心概念 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="朱家聪" />
+          <p class="site-author-name" itemprop="name">朱家聪</p>
+           
+              <p class="site-description motion-element" itemprop="description">这里是一个学渣程序员的进步之路，而非技术大牛的心得分享。如在博客中出现技术错误，请各位兄弟联系我并改正：731340034@qq.com</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串-标签和菜单"><span class="nav-number">1.</span> <span class="nav-text">字符串 标签和菜单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串-String"><span class="nav-number">1.1.</span> <span class="nav-text">字符串 String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C和C-中的字符串类型转换"><span class="nav-number">1.1.1.</span> <span class="nav-text">C和C++中的字符串类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cocos2d-String"><span class="nav-number">1.1.2.</span> <span class="nav-text">cocos2d::__String</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签-Label"><span class="nav-number">1.2.</span> <span class="nav-text">标签 Label</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Label类的基本使用"><span class="nav-number">1.2.1.</span> <span class="nav-text">Label类的基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片集标签"><span class="nav-number">1.2.2.</span> <span class="nav-text">图片集标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#菜单-Menu"><span class="nav-number">1.3.</span> <span class="nav-text">菜单 Menu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本菜单"><span class="nav-number">1.3.1.</span> <span class="nav-text">文本菜单</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱家聪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

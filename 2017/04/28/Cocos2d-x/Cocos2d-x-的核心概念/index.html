@@ -1,0 +1,753 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2d-x," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导演，场景，层，精灵，菜单在Cocos2d-x中，有很多的概念，这些概念很多都来源于动画，动漫和电影等行业，如导演，场景和层等概念，当然也有传统的游戏概念。">
+<meta name="keywords" content="Cocos2d-x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2d-x 的核心概念">
+<meta property="og:url" content="http://yoursite.com/2017/04/28/Cocos2d-x/Cocos2d-x-的核心概念/index.html">
+<meta property="og:site_name" content="朱家聪的博客">
+<meta property="og:description" content="导演，场景，层，精灵，菜单在Cocos2d-x中，有很多的概念，这些概念很多都来源于动画，动漫和电影等行业，如导演，场景和层等概念，当然也有传统的游戏概念。">
+<meta property="og:image" content="http://www.cocos.com/docs/native/v3/basic-concepts/res/frame.png">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/CCLayer4.51.39.png?e=1493373161&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:pAdfEtezvpo_IwfhM41MFsWRYfk">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/Sprite添加到Layer.png?e=1493375169&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:Vjf6aeApciT_Cd6xa1MHSelUalc">
+<meta property="og:image" content="http://www.cocos.com/docs/native/v3/coordinate-system/res/UICoordinate.png">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/update%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png?e=1493698372&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:IdnOLX70wQplk4bSwZAZHz0rmsY">
+<meta property="og:updated_time" content="2017-05-02T05:53:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2d-x 的核心概念">
+<meta name="twitter:description" content="导演，场景，层，精灵，菜单在Cocos2d-x中，有很多的概念，这些概念很多都来源于动画，动漫和电影等行业，如导演，场景和层等概念，当然也有传统的游戏概念。">
+<meta name="twitter:image" content="http://www.cocos.com/docs/native/v3/basic-concepts/res/frame.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/28/Cocos2d-x/Cocos2d-x-的核心概念/"/>
+
+
+
+
+
+  <title> Cocos2d-x 的核心概念 | 朱家聪的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">朱家聪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/Cocos2d-x/Cocos2d-x-的核心概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱家聪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱家聪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2d-x 的核心概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T15:57:47+08:00">
+                2017-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="导演，场景，层，精灵，菜单"><a href="#导演，场景，层，精灵，菜单" class="headerlink" title="导演，场景，层，精灵，菜单"></a>导演，场景，层，精灵，菜单</h1><p>在Cocos2d-x中，有很多的概念，这些概念很多都来源于动画，动漫和电影等行业，如导演，场景和层等概念，当然也有传统的游戏概念。</p>
+<a id="more"></a>
+<pre><code>导演              
+场景
+层
+节点
+精灵
+菜单
+动作
+效果
+粒子运动
+地图
+物理引擎 
+</code></pre><p>首先要来学习的是最主要的几个概念，导演，场景，层，精灵，菜单。前四个概念之间的关系如下图所示：<br><img src="http://www.cocos.com/docs/native/v3/basic-concepts/res/frame.png" alt=""></p>
+<h2 id="导演"><a href="#导演" class="headerlink" title="导演"></a>导演</h2><p>导演类 Director（v3.0之前是 CCDirector）是用于管理场景的对象，采用了单例设计模式，在一个游戏程序中只有一个导演对象。由于是单例模式，能够保存当前程序中的很多配置信息，并保证这些信息的一致性。获取当前程序的导演对象的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> director = Director::getInstance();</div></pre></td></tr></table></figure>
+<p>导演对象的职责如下：</p>
+<ol>
+<li>访问和改变场景</li>
+<li>访问Cocos2d-x的配置信息</li>
+<li>暂停，继续和停止游戏</li>
+<li>转换坐标</li>
+</ol>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>场景类Scene（v3.0之前是CCScene）是构成游戏的界面，场景大致可以分为以下几类：</p>
+<ol>
+<li>展示类场景：播放视频或简单的在图像上输出文字，如游戏的开始界面，帮助界面，胜利提示界面等。</li>
+<li>选项类场景：包括主菜单，设置菜单等。</li>
+<li>游戏场景：游戏的主要内容。<br>导演类管理着不同场景之间的转换，而场景则是层Layer的承载者。</li>
+</ol>
+<h2 id="层"><a href="#层" class="headerlink" title="层"></a>层</h2><p>层是Cocos2d-x中的一个重点，我们所有的游戏内容都要放在层上进行实现。类似于PhotoShop中的图层的概念，每一个游戏场景都是有一个个的图层构成的。与场景不同，层通常包含的是直接在屏幕上呈现的内容，并且可以接受用户的输入事件，包括触摸，加速度计和键盘输入等。我们需要在层中加入精灵，文本标签或者其他游戏元素，并设置游戏元素的属性，比如位置，方向和大小；设置游戏元素的动作等。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> layer = LayerColor::create(Color4B(<span class="number">0</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">255</span>));</div><div class="line">layer-&gt;setContentSize(Size(<span class="number">120</span>, <span class="number">80</span>));</div><div class="line">layer-&gt;setPosition(Point(<span class="number">50</span>, <span class="number">50</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(layer, <span class="number">10</span>);</div><div class="line"><span class="keyword">auto</span> layer1 = LayerColor::create(Color4B(<span class="number">128</span>, <span class="number">0</span>, <span class="number">128</span>, <span class="number">255</span>));</div><div class="line">layer1-&gt;setContentSize(Size(<span class="number">120</span>, <span class="number">80</span>));</div><div class="line">layer1-&gt;setPosition(Point(<span class="number">100</span>, <span class="number">80</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(layer1, <span class="number">20</span>);</div><div class="line"><span class="keyword">auto</span> layer2 = LayerColor::create(Color4B(<span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">255</span>));</div><div class="line">layer2-&gt;setContentSize(Size(<span class="number">120</span>, <span class="number">80</span>));</div><div class="line">layer2-&gt;setPosition(Point(<span class="number">150</span>, <span class="number">110</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(layer2, <span class="number">30</span>);</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">LayerColor是Layer的一个派生类，用于创建带有背景颜色的层对象</div><div class="line">Color4B(r,g,b,a)用于创建一个颜色数据</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p><img src="http://op3ueeezt.bkt.clouddn.com/CCLayer4.51.39.png?e=1493373161&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:pAdfEtezvpo_IwfhM41MFsWRYfk" alt=""><br>我们可以在一个场景中添加多个层对象，这些层按照添加到场景中的顺序先后来排列。先添加到场景中的层会放置在最底层，后添加的层会叠加到之前的层上面。而层也是事件响应机制中的一个响应者，当用户触发一个触摸事件时，在上层的层会优先接收到系统事件。在事件的传递过程中，如果有一个层响应了这个事件，则后续的层就不会再接受到该事件。所以层的先后顺序决定了层的上下关系以及事件的传递和响应。</p>
+<h2 id="精灵"><a href="#精灵" class="headerlink" title="精灵"></a>精灵</h2><p>精灵类Sprite是可以理解为游戏场景中的每一个元素，背景/玩家/敌人/静态或动态的物体都是由精灵对象来实现的。精灵可以移动，旋转，缩放，执行动画，并接受其他转换。在Cocos2d-x中提供了两个精灵类，分别是负责2D游戏的Sprite和负责3D游戏的Sprite3D，他们都继承于Node类。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> sprite = Sprite::create(<span class="string">"HelloWorld.png"</span>);      </div><div class="line">layer2-&gt;addChild(sprite,<span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>使用<code>HelloWorld.png</code>来创建一个sprite对象，然后将这个精灵对象加入到前面所创建的layer3中去。结果如下图所示。可以发现这个精灵被添加到了之前所创建的Layer3上面了，但是我们并没有设置这个精灵的位置。因为在Cocos2d-x中，坐标系的原点在左下角，而精灵定锚点在最中心。所以呈现出了精灵的中心点和层的左下角点重合的现象。<br><img src="http://op3ueeezt.bkt.clouddn.com/Sprite添加到Layer.png?e=1493375169&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:Vjf6aeApciT_Cd6xa1MHSelUalc" alt="Sprite添加到Layer"></p>
+<h2 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h2><p>菜单Menu在游戏中是非常重要的概念，它提供了操作的集合。菜单类派生于Layer类，其中包含了菜单项MenuItem类。MenuItem又派生出了多种形式的子类，MenuItemLabel，MenuItemSprite，MenuItemToggle。每一个菜单项又有三种基本状态，正常／选中／禁止。</p>
+<h1 id="节点-Node"><a href="#节点-Node" class="headerlink" title="节点 Node"></a>节点 Node</h1><p>Cocos2d-x使用的是层级（树形）结构来管理场景，层，精灵，菜单，文本等节点对象。在前文中所说的场景，层，精灵，菜单都是Cocos2d-x结构树中的节点。这些类都有一个共同的基类Node，想要能够管理Cocos2d-x的结构树，我们需要来学习节点相关的各种操作。</p>
+<h2 id="节点的常用操作"><a href="#节点的常用操作" class="headerlink" title="节点的常用操作"></a>节点的常用操作</h2><h3 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h3><p>使用Node类的<code>create()</code>方法可能新建一个空的节点。不同类型的节点有不同的创建方法，比如Sprite在创建时可以添加一张图片。创建完毕后，可以将这个节点通过<code>addChild(node)</code>添加到节点树中去。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个新节点</span></div><div class="line">Node *node = Node::create();</div><div class="line"><span class="comment">//将这个节点添加到当前场景中</span></div><div class="line"><span class="keyword">this</span>-&gt;addChild(node);</div></pre></td></tr></table></figure>
+<p>对于addChild函数有多种不同参数的定义，可以使用的参数有 child,localZOrder,tag,name。其中localZOrder表示节点在Z轴方向上的显示层次。localZOrder的值越大，显示在越上层。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">addChild</span><span class="params">(Node * child)</span></span>;</div><div class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">addChild</span><span class="params">(Node * child, <span class="keyword">int</span> localZOrder)</span></span>;</div><div class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">addChild</span><span class="params">(Node* child, <span class="keyword">int</span> localZOrder, <span class="keyword">int</span> tag)</span></span>;</div><div class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">addChild</span><span class="params">(Node* child, <span class="keyword">int</span> localZOrder, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;name)</span></span>;</div></pre></td></tr></table></figure>
+<h3 id="查找子节点"><a href="#查找子节点" class="headerlink" title="查找子节点"></a>查找子节点</h3><p>当程序运行过程中，我们需要从一个场景的多个节点中，查找到一个我们需要的节点。有两种方式来进行这个操作，分别是使用name和tag。需要注意的是，不论是哪一种方法，都只能查找某一个节点的直属子节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用tag来查找子节点</span></div><div class="line">node1-&gt;setTag(<span class="number">100</span>);</div><div class="line"><span class="keyword">auto</span> nodeForTag = <span class="keyword">this</span>-&gt;getChildByTag(<span class="number">100</span>);</div><div class="line"><span class="comment">//使用名字来查找子节点</span></div><div class="line">node1-&gt;setName(<span class="string">"node01"</span>);</div><div class="line"><span class="keyword">auto</span> nodeForName = <span class="keyword">this</span>-&gt;getChildByName(<span class="string">"node01"</span>);</div></pre></td></tr></table></figure>
+<h3 id="删除子节点"><a href="#删除子节点" class="headerlink" title="删除子节点"></a>删除子节点</h3><p>删除某一个节点，可以将这个节点从它所在的节点树中移除。被移除的节点会从屏幕上消失，并且停止一切动作。常用的删除方法有多种，根据实际开发需求来选择使用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//从父节点通过tag/name来删除node1</span></div><div class="line"><span class="keyword">this</span>-&gt;removeChildByTag(<span class="number">100</span>);</div><div class="line"><span class="keyword">this</span>-&gt;removeChildByName(<span class="string">"node01"</span>);</div><div class="line"><span class="comment">//从父节点删除指定节点</span></div><div class="line"><span class="keyword">this</span>-&gt;removeChild(node1);</div><div class="line"><span class="comment">//从父节点删除所有子节点</span></div><div class="line"><span class="keyword">this</span>-&gt;removeAllChildren();</div><div class="line"><span class="comment">//将子节点从父节点下移除</span></div><div class="line">node1-&gt;removeFromParent();</div></pre></td></tr></table></figure>
+<h2 id="节点的定位"><a href="#节点的定位" class="headerlink" title="节点的定位"></a>节点的定位</h2><p>要在当前的场景中，定位一个节点的位置，需要使用到两个属性，position和anchorPoint。为了更直观的来演示节点的Position和anchorPoint属性，我们需要新建一共项目场景来做测试。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> layer1 = LayerColor::create(Color4B(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</div><div class="line">layer1-&gt;setContentSize(Size(<span class="number">100</span>, <span class="number">100</span>));</div><div class="line">layer1-&gt;setPosition(Point(<span class="number">0</span>, <span class="number">30</span>));</div><div class="line">layer1-&gt;setAnchorPoint(Point(<span class="number">0</span>,<span class="number">0</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(layer1);</div></pre></td></tr></table></figure>
+<p>用一个Layer来举例。此处用到了三个属性的设置，分别是contentSize，position，anchorPoint。<br>首先设置了这个节点的大小，这边用到了一个类Size。使用Size类的构造函数创建一个了一个Size对象，用于表示当前节点的大小。两个参数分别表示宽和高。</p>
+<pre><code>contentSize:节点的大小，Size(float width, float height);
+</code></pre><p>使用position属性可以来设定节点在父节点中的相对位置。在Cocos2d-x中，使用了笛卡尔坐标系，而非标准的屏幕坐标系。坐标系的原点在父节点的左下角。而在普通的iOS程序中使用的屏幕坐标系的原点在左上角。<br><img src="http://www.cocos.com/docs/native/v3/coordinate-system/res/UICoordinate.png" alt=""></p>
+<pre><code>position:节点的位置，Vec2(float xx, float yy);
+</code></pre><p>一个节点一般被看作是一个标准的矩形区域。对于一个区域的定位，只有一个position值是远远不够的。所以每一个节点都还有一个锚点的概念。这个锚点是节点内部一个虚拟的点，在定位节点时可以理解为将锚点位置对准父节点坐标系中position点所在的位置。而锚点在当前节点中的相对位置则以相对比例来表示。例如（0，0）点在左下角，（1，1）点在右上角，（0，1）点在左上角，（1，0）点在右下角。</p>
+<pre><code>anchorPoint:节点的锚点位置，Vec2(float xx, float yy);
+</code></pre><h1 id="游戏的循环和调度"><a href="#游戏的循环和调度" class="headerlink" title="游戏的循环和调度"></a>游戏的循环和调度</h1><p>Cocos2d-x调度器为游戏提供定时事件和定时调用服务。所有Node对象都可以调度和取消调度事件，使用调度器有几个好处：</p>
+<ol>
+<li>每当Node不再可见或已从场景中移除时，调度器会停止。</li>
+<li>Cocos2d-x暂停时，调度器也会停止。当Cocos2d-x重新开始时，调度器也会自动继续启动。</li>
+<li>Cocos2d-x封装了一个供各种不同平台使用的调度器，使用此调度器你不用关心和跟踪你所设定的定时对象的销毁和停止，以及崩溃的风险。</li>
+</ol>
+<h2 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h2><p>在节点运行过程中，可以随时开启默认调度器。默认调度器能够自动的调用节点对象的update函数，该方法会在每帧绘制之前都会被调用一次。因为游戏能够被用户做观察到的最短时间间隔为1帧，所以在update函数中就能过执行大多数的游戏运行逻辑。使用<code>scheduleUpdate()</code>函数可以开启默认调度器，或者使用<code>unscheduleUpdate()</code>来关闭默认调度器。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> :</span> <span class="keyword">public</span> cocos2d::Scene</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">Scene* <span class="title">createScene</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// a selector callback</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// implement the "static create()" method manually</span></div><div class="line">    CREATE_FUNC(HelloWorld);</div><div class="line">    <span class="comment">// 定义update函数，用于循环调用</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> dt)</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 实现update函数</span></div><div class="line"><span class="keyword">void</span> HelloWorld::update(<span class="keyword">float</span> dt)&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"update:"</span>&lt;&lt;dt&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//在当前场景的init函数中开启update函数的调用</span></div><div class="line"><span class="keyword">bool</span> HelloWorld::init()</div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ( !Scene::init() )</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//开启update的调用</span></div><div class="line">    <span class="keyword">this</span>-&gt;scheduleUpdate();</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>程序运行结果：</p>
+<p><img src="http://op3ueeezt.bkt.clouddn.com/update%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png?e=1493698372&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:IdnOLX70wQplk4bSwZAZHz0rmsY" alt="update运行结果"></p>
+<p>执行上述代码后系统会不停的去调用update函数，这个函数一般都用于执行一些时时刻刻需要做的事。比如说一些射击类游戏中，子弹的碰撞计算与胜负的判定。</p>
+<h2 id="自定义调度器"><a href="#自定义调度器" class="headerlink" title="自定义调度器"></a>自定义调度器</h2><p>对于一些执行频率不需要这么高的操作，使用默认调度器就不太合适了。这里我们还可以创建一个自定义的调度器。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> :</span> <span class="keyword">public</span> cocos2d::Scene</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">Scene* <span class="title">createScene</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// a selector callback</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// implement the "static create()" method manually</span></div><div class="line">    CREATE_FUNC(HelloWorld);</div><div class="line">    <span class="comment">//定义自定义的调度函数</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">updateCustom</span><span class="params">(<span class="keyword">float</span> dt)</span></span>;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">void</span> HelloWorld::updateCustom(<span class="keyword">float</span> dt)&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"update:"</span>&lt;&lt;dt&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后同样也需要开启这个自定义的调度器。使用schedule函数可以开启自定义的调度器,这里可以根据自己的需求来填写参数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>-&gt;schedule(schedule_selector(HelloWorld::updateCustom), <span class="number">1.0f</span>, kRepeatForever, <span class="number">0</span>);</div><div class="line"><span class="comment">//取消某一个调度器的执行</span></div><div class="line"><span class="comment">//this-&gt;unschedule(schedule_selector(HelloWorld::updateCustom));</span></div><div class="line"><span class="comment">//取消所有调度器的执行</span></div><div class="line"><span class="comment">//this-&gt;unscheduleAllCallbacks();</span></div><div class="line"></div><div class="line"><span class="comment">//schedule函数的定义：</span></div><div class="line"><span class="keyword">void</span> Node::schedule(SEL_SCHEDULE selector);</div><div class="line"><span class="keyword">void</span> Node::schedule(SEL_SCHEDULE selector, <span class="keyword">float</span> interval);</div><div class="line"><span class="keyword">void</span> Node::schedule(SEL_SCHEDULE selector, <span class="keyword">float</span> interval, <span class="keyword">unsigned</span> <span class="keyword">int</span> repeat, <span class="keyword">float</span> delay);</div></pre></td></tr></table></figure>
+<pre><code>参数：
+SEL_SCHEDULE selector：所要调用的函数，使用schedule_selector()宏定义来声明一个函数
+interval：调度的时间间隔，单位是秒
+repeat：重复调度的次数，kRepeatForever表示一直调用直到手动取消
+delay： 延迟调用的时间
+</code></pre><h2 id="单次调度器"><a href="#单次调度器" class="headerlink" title="单次调度器"></a>单次调度器</h2><p>顾名思义就是值调用一次的调度器。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> :</span> <span class="keyword">public</span> cocos2d::Scene</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">Scene* <span class="title">createScene</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// a selector callback</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// implement the "static create()" method manually</span></div><div class="line">    CREATE_FUNC(HelloWorld);</div><div class="line">    <span class="comment">// 单次调度函数</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateOnce</span><span class="params">(<span class="keyword">float</span> dt)</span></span>;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">bool</span> HelloWorld::init()</div><div class="line">&#123;</div><div class="line">    scheduleOnce(schedule_selector(HelloWorld::updateOnce), <span class="number">0.1f</span>);</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> HelloWorld::updateOnce(<span class="keyword">float</span> dt)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">log</span>(<span class="string">"Once"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2d-x/" rel="tag"># Cocos2d-x</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/02/Cocos2d-x/Cocos2d-x字符串-标签和菜单/" rel="next" title="Cocos2d-x 字符串 标签和菜单">
+                <i class="fa fa-chevron-left"></i> Cocos2d-x 字符串 标签和菜单
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/28/Cocos2d-x/Cocos2d-x开发准备/" rel="prev" title="Cocos2d-x 开发准备">
+                Cocos2d-x 开发准备 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="朱家聪" />
+          <p class="site-author-name" itemprop="name">朱家聪</p>
+           
+              <p class="site-description motion-element" itemprop="description">这里是一个学渣程序员的进步之路，而非技术大牛的心得分享。如在博客中出现技术错误，请各位兄弟联系我并改正：731340034@qq.com</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#导演，场景，层，精灵，菜单"><span class="nav-number">1.</span> <span class="nav-text">导演，场景，层，精灵，菜单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导演"><span class="nav-number">1.1.</span> <span class="nav-text">导演</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">1.2.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层"><span class="nav-number">1.3.</span> <span class="nav-text">层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精灵"><span class="nav-number">1.4.</span> <span class="nav-text">精灵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#菜单"><span class="nav-number">1.5.</span> <span class="nav-text">菜单</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#节点-Node"><span class="nav-number">2.</span> <span class="nav-text">节点 Node</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#节点的常用操作"><span class="nav-number">2.1.</span> <span class="nav-text">节点的常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建节点"><span class="nav-number">2.1.1.</span> <span class="nav-text">新建节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找子节点"><span class="nav-number">2.1.2.</span> <span class="nav-text">查找子节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除子节点"><span class="nav-number">2.1.3.</span> <span class="nav-text">删除子节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点的定位"><span class="nav-number">2.2.</span> <span class="nav-text">节点的定位</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏的循环和调度"><span class="nav-number">3.</span> <span class="nav-text">游戏的循环和调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认调度器"><span class="nav-number">3.1.</span> <span class="nav-text">默认调度器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义调度器"><span class="nav-number">3.2.</span> <span class="nav-text">自定义调度器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单次调度器"><span class="nav-number">3.3.</span> <span class="nav-text">单次调度器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱家聪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
