@@ -1,0 +1,712 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2d-x," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="场景和层在一个游戏中往往有多个场景和多个层。每个场景都有一个或者一个以上的层。在我们所创建的游戏工程中，AppDelegate.cpp文件中使用如下代码来创建一个新的场景：">
+<meta name="keywords" content="Cocos2d-x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2d-x 场景与层">
+<meta property="og:url" content="http://yoursite.com/2017/05/08/Cocos2d-x/Cocos2d-x-场景与层/index.html">
+<meta property="og:site_name" content="朱家聪的博客">
+<meta property="og:description" content="场景和层在一个游戏中往往有多个场景和多个层。每个场景都有一个或者一个以上的层。在我们所创建的游戏工程中，AppDelegate.cpp文件中使用如下代码来创建一个新的场景：">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/startScene.png?e=1494295127&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:_cqU3o1jNPGY-HmG4NBYPYqAu5M">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/settingScene.png?e=1494303439&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:HjtBpEnCOH35f9XFbuoC3Ts5K7U">
+<meta property="og:updated_time" content="2017-05-09T05:45:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2d-x 场景与层">
+<meta name="twitter:description" content="场景和层在一个游戏中往往有多个场景和多个层。每个场景都有一个或者一个以上的层。在我们所创建的游戏工程中，AppDelegate.cpp文件中使用如下代码来创建一个新的场景：">
+<meta name="twitter:image" content="http://op3ueeezt.bkt.clouddn.com/startScene.png?e=1494295127&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:_cqU3o1jNPGY-HmG4NBYPYqAu5M">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/08/Cocos2d-x/Cocos2d-x-场景与层/"/>
+
+
+
+
+
+  <title> Cocos2d-x 场景与层 | 朱家聪的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">朱家聪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/Cocos2d-x/Cocos2d-x-场景与层/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱家聪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱家聪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2d-x 场景与层
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-08T15:11:54+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="场景和层"><a href="#场景和层" class="headerlink" title="场景和层"></a>场景和层</h1><p>在一个游戏中往往有多个场景和多个层。每个场景都有一个或者一个以上的层。在我们所创建的游戏工程中，AppDelegate.cpp文件中使用如下代码来创建一个新的场景：<br><a id="more"></a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// create a scene. it's an autorelease object</span></div><div class="line"><span class="keyword">auto</span> scene = HelloWorld::createScene();</div><div class="line"></div><div class="line"><span class="comment">// run</span></div><div class="line">director-&gt;runWithScene(scene);</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> :</span> <span class="keyword">public</span> cocos2d::Scene</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">Scene* <span class="title">createScene</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// a selector callback</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// implement the "static create()" method manually</span></div><div class="line">    CREATE_FUNC(HelloWorld);</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">onExit</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Scene* HelloWorld::createScene()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> HelloWorld::create();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在老版本的Cocos2d-x中，将HelloWorld定义为一个Layer。然后在<code>createScene()</code>函数中创建所对应的Scene。再将HelloWorld层添加到这个场景中去。而在最新版本的Cocos2d-x中将HelloWorld直接定义为了一个Scene。在这个场景中我们可以去添加自己的层，来搭建我们需要的游戏场景或者UI界面。</p>
+<h2 id="场景过渡"><a href="#场景过渡" class="headerlink" title="场景过渡"></a>场景过渡</h2><p>一个完整的游戏一般是由多个场景构成的，这些场景之间需要做互相的切换和调度。以一个游戏的开始界面和设置界面为例来学习场景过渡的用法。</p>
+<h3 id="搭建开始游戏界面"><a href="#搭建开始游戏界面" class="headerlink" title="搭建开始游戏界面"></a>搭建开始游戏界面</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建背景</span></div><div class="line">Sprite *background = Sprite::create(<span class="string">"background.png"</span>);</div><div class="line">background-&gt;setContentSize(visibleSize);</div><div class="line">background-&gt;setAnchorPoint(Vec2::ZERO);</div><div class="line">background-&gt;setPosition(origin);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(background);</div><div class="line"></div><div class="line"><span class="comment">//开始按钮</span></div><div class="line">Sprite *startSpriteNormal = Sprite::create(<span class="string">"start-up.png"</span>);</div><div class="line">Sprite *startSpriteSelect = Sprite::create(<span class="string">"start-down.png"</span>);</div><div class="line">MenuItemSprite *startItem = MenuItemSprite::create(startSpriteNormal, startSpriteSelect, CC_CALLBACK_1(StartGameScene::startGame, <span class="keyword">this</span>));</div><div class="line">startItem-&gt;setPosition(Vec2(origin.x+visibleSize.width/<span class="number">2</span> - <span class="number">100</span>,origin.y+<span class="number">100</span>));</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//设置按钮</span></div><div class="line">MenuItemImage *settingItem = MenuItemImage::create(<span class="string">"setting-up.png"</span>, <span class="string">"setting-down.png"</span>, CC_CALLBACK_1(StartGameScene::settingCallback, <span class="keyword">this</span>));</div><div class="line">settingItem-&gt;setPosition(Vec2(origin.x+visibleSize.width/<span class="number">2</span> + <span class="number">100</span>, origin.y+<span class="number">100</span>));</div><div class="line"></div><div class="line"><span class="comment">//菜单</span></div><div class="line">Menu *menu = Menu::create(startItem, settingItem, <span class="literal">NULL</span>);</div><div class="line">menu-&gt;setPosition(Vec2::ZERO);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(menu);</div></pre></td></tr></table></figure>
+<p><img src="http://op3ueeezt.bkt.clouddn.com/startScene.png?e=1494295127&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:_cqU3o1jNPGY-HmG4NBYPYqAu5M" alt="startScene"></p>
+<h3 id="场景的过渡和切换"><a href="#场景的过渡和切换" class="headerlink" title="场景的过渡和切换"></a>场景的过渡和切换</h3><p>在设置按钮的点击回调方法中，添加代码来完成场景的过渡。这里需要使用到的类是TransitionScene以及他的子类。TransitionScene是一个抽象类，表示用于做场景过渡效果的特殊场景，不能用来直接做场景的切换。而是应该用他的各种子类来实现场景切换的效果。这里我们使用TransitionMoveInL来完成一个从屏幕左边移动进入的场景切换效果。使用Director的pushScene函数来弹出一个新的场景。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> StartGameScene::settingCallback(Ref* pSender)&#123;</div><div class="line">    <span class="comment">//创建设置界面场景</span></div><div class="line">    SettingScene *<span class="built_in">set</span> = SettingScene::create();</div><div class="line">    <span class="keyword">auto</span> *ts = TransitionMoveInL::create(<span class="number">1.0f</span>, <span class="built_in">set</span>);</div><div class="line">    Director::getInstance()-&gt;pushScene(ts);</div><div class="line">    </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="搭建设置界面"><a href="#搭建设置界面" class="headerlink" title="搭建设置界面"></a>搭建设置界面</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//背景</span></div><div class="line">Sprite *background = Sprite::create(<span class="string">"setting-back.png"</span>);</div><div class="line">background-&gt;setPosition(origin);</div><div class="line">background-&gt;setAnchorPoint(Vec2::ZERO);</div><div class="line">background-&gt;setContentSize(visibleSize);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(background);</div><div class="line"></div><div class="line"><span class="comment">//音效</span></div><div class="line">MenuItemImage *soundOn = MenuItemImage::create(<span class="string">"on.png"</span>,<span class="string">"on.png"</span>);</div><div class="line">MenuItemImage *soundOff = MenuItemImage::create(<span class="string">"off.png"</span>,<span class="string">"off.png"</span>);</div><div class="line">MenuItemToggle *soundToggle = MenuItemToggle::createWithCallback(CC_CALLBACK_1(SettingScene::toggleCallback, <span class="keyword">this</span>), soundOn, soundOff, <span class="literal">NULL</span>);</div><div class="line">soundToggle-&gt;setPosition(Vec2(origin.x+visibleSize.width - <span class="number">150</span>, origin.y+visibleSize.height / <span class="number">2</span> + <span class="number">10</span>));</div><div class="line"></div><div class="line"><span class="comment">//背景音乐</span></div><div class="line">MenuItemImage *musicOn = MenuItemImage::create(<span class="string">"on.png"</span>,<span class="string">"on.png"</span>);</div><div class="line">MenuItemImage *musicOff = MenuItemImage::create(<span class="string">"off.png"</span>,<span class="string">"off.png"</span>);</div><div class="line">MenuItemToggle *musicToggle = MenuItemToggle::createWithCallback(CC_CALLBACK_1(SettingScene::toggleCallback, <span class="keyword">this</span>), musicOn, musicOff, <span class="literal">NULL</span>);</div><div class="line">musicToggle-&gt;setPosition(Vec2(origin.x+visibleSize.width - <span class="number">150</span>, origin.y+visibleSize.height / <span class="number">2</span> - <span class="number">40</span>));</div><div class="line"></div><div class="line"><span class="comment">//OK</span></div><div class="line">MenuItemImage *okItem = MenuItemImage::create(<span class="string">"ok-up.png"</span>, <span class="string">"ok-down.png"</span>, CC_CALLBACK_1(SettingScene::okButtonCallback, <span class="keyword">this</span>));</div><div class="line">okItem-&gt;setPosition(Vec2(origin.x+visibleSize.width / <span class="number">2</span>, <span class="number">50</span>));</div><div class="line"></div><div class="line"><span class="comment">//Menu</span></div><div class="line">Menu *menu = Menu::create(soundToggle, musicToggle, okItem, <span class="literal">NULL</span>);</div><div class="line">menu-&gt;setPosition(origin);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(menu);</div></pre></td></tr></table></figure>
+<p>运行效果:<br><img src="http://op3ueeezt.bkt.clouddn.com/settingScene.png?e=1494303439&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:HjtBpEnCOH35f9XFbuoC3Ts5K7U" alt="settingScene"></p>
+<h3 id="返回原场景"><a href="#返回原场景" class="headerlink" title="返回原场景"></a>返回原场景</h3><p>在设置界面的ok键的回调函数中，编写代码返回前一界面。因为我们在第一次界面转换时使用的是Push方法。这是一种类似于栈的场景管理方法，切换到后一个场景时，前一个场景不会被销毁。所以在需要返回时直接使用Pop方法进行弹出即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> SettingScene::okButtonCallback(Ref *pSender)&#123;</div><div class="line">    Director::getInstance()-&gt;popScene();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="场景的生命周期"><a href="#场景的生命周期" class="headerlink" title="场景的生命周期"></a>场景的生命周期</h2><p>在Cocos2d-x中，多个场景在转换显示的时候会经历场景的创建和销毁。有一系列的函数可以用于操作在整个场景的生命周期中的各种事件。</p>
+<h3 id="系统函数"><a href="#系统函数" class="headerlink" title="系统函数"></a>系统函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//场景的生命周期</span></div><div class="line"><span class="keyword">bool</span> SettingScene::init()</div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"场景初始化"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">if</span> ( !Scene::init() )</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;    </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> SettingScene::onEnter()&#123;</div><div class="line">    Scene::onEnter();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"进入场景"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> SettingScene::onEnterTransitionDidFinish()&#123;</div><div class="line">    Scene::onEnterTransitionDidFinish();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"进入场景动画完成"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> SettingScene::onExit()&#123;</div><div class="line">    Scene::onExit();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"退出场景"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> SettingScene::onExitTransitionDidStart()&#123;</div><div class="line">    Scene::onExitTransitionDidStart();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"退出场景动画开始"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> SettingScene::cleanup()&#123;</div><div class="line">    Scene::cleanup();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"场景清除"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="多场景过渡"><a href="#多场景过渡" class="headerlink" title="多场景过渡"></a>多场景过渡</h3><p>两个场景切换时，关系到两个场景之间的生命周期，在Start场景中也可以编写相关函数来同时监控两个场景。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//场景的生命周期</span></div><div class="line"><span class="keyword">bool</span> StartGameScene::init()</div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"场景初始化"</span>&lt;&lt;<span class="string">"StartScene"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">if</span> ( !Scene::init() )</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;    </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> StartGameScene::onEnter()&#123;</div><div class="line">    Scene::onEnter();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"进入场景"</span>&lt;&lt;<span class="string">"StartScene"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> StartGameScene::onEnterTransitionDidFinish()&#123;</div><div class="line">    Scene::onEnterTransitionDidFinish();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"进入场景动画完成"</span>&lt;&lt;<span class="string">"StartScene"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> StartGameScene::onExit()&#123;</div><div class="line">    Scene::onExit();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"退出场景"</span>&lt;&lt;<span class="string">"StartScene"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> StartGameScene::onExitTransitionDidStart()&#123;</div><div class="line">    Scene::onExitTransitionDidStart();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"退出场景动画开始"</span>&lt;&lt;<span class="string">"StartScene"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> StartGameScene::cleanup()&#123;</div><div class="line">    Scene::cleanup();</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"场景清除"</span>&lt;&lt;<span class="string">"StartScene"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在考虑多场景切换时，我们需要从以下三种情况来尝试。</p>
+<h4 id="使用pushScene-跳转到设置界面"><a href="#使用pushScene-跳转到设置界面" class="headerlink" title="使用pushScene()跳转到设置界面"></a>使用pushScene()跳转到设置界面</h4><p>在使用push的从场景1跳转到场景2时，场景1虽然会退出，但是并不会被清除。执行后的控制台输出结果如下:</p>
+<blockquote>
+<p>场景初始化SettingScene<br>退出场景动画开始StartScene<br>进入场景SettingScene<br>退出场景StartScene<br>进入场景动画完成SettingScene</p>
+</blockquote>
+<p>我们可以发现，StartScene并没有被清除，而只是暂时的退出了。</p>
+<h4 id="使用replaceScene-跳转到设置界面"><a href="#使用replaceScene-跳转到设置界面" class="headerlink" title="使用replaceScene()跳转到设置界面"></a>使用replaceScene()跳转到设置界面</h4><p>replaceScene来实现场景跳转的时候，会在整个场景过渡动画结束之后清除掉StartScene。所以使用replaceScene来跳转的场景无法再使用popScene来进行返回。</p>
+<blockquote>
+<p>场景初始化SettingScene<br>退出场景动画开始StartScene<br>进入场景SettingScene<br>退出场景StartScene<br>进入场景动画完成SettingScene<br>场景清除StartScene</p>
+</blockquote>
+<h4 id="使用popScene-返回前一场景"><a href="#使用popScene-返回前一场景" class="headerlink" title="使用popScene()返回前一场景"></a>使用popScene()返回前一场景</h4><p>在使用popScene退出一个场景时会完全清楚这个场景并且退出它。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">退出场景动画开始SettingScene</div><div class="line">退出场景SettingScene</div><div class="line">场景清除SettingScene</div><div class="line">进入场景StartScene</div><div class="line">进入场景动画完成StartScene</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2d-x/" rel="tag"># Cocos2d-x</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/03/Cocos2d-x/Cocos2d-x-精灵/" rel="prev" title="Cocos2d-x 精灵">
+                Cocos2d-x 精灵 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="朱家聪" />
+          <p class="site-author-name" itemprop="name">朱家聪</p>
+           
+              <p class="site-description motion-element" itemprop="description">这里是一个学渣程序员的进步之路，而非技术大牛的心得分享。如在博客中出现技术错误，请各位兄弟联系我并改正：731340034@qq.com</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhengyiqun.com/" title="郑逸群小鲜肉的技术分享" target="_blank">郑逸群小鲜肉的技术分享</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景和层"><span class="nav-number">1.</span> <span class="nav-text">场景和层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景过渡"><span class="nav-number">1.1.</span> <span class="nav-text">场景过渡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建开始游戏界面"><span class="nav-number">1.1.1.</span> <span class="nav-text">搭建开始游戏界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景的过渡和切换"><span class="nav-number">1.1.2.</span> <span class="nav-text">场景的过渡和切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建设置界面"><span class="nav-number">1.1.3.</span> <span class="nav-text">搭建设置界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回原场景"><span class="nav-number">1.1.4.</span> <span class="nav-text">返回原场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景的生命周期"><span class="nav-number">1.2.</span> <span class="nav-text">场景的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">系统函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多场景过渡"><span class="nav-number">1.2.2.</span> <span class="nav-text">多场景过渡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用pushScene-跳转到设置界面"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">使用pushScene()跳转到设置界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用replaceScene-跳转到设置界面"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">使用replaceScene()跳转到设置界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用popScene-返回前一场景"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">使用popScene()返回前一场景</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱家聪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
