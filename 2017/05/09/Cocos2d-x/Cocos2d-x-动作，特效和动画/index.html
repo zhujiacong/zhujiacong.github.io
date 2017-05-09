@@ -1,0 +1,701 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2d-x," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="动作、特效和动画游戏是一个动态的世界，在游戏中跟踪精灵对象都是动态的。在Cocos2d-x中的Node对象就有这些动态特征。在Node类中定义了动作、特效和动画这些动态特征，因此我们在精灵、标签、菜单、地图和粒子系统等都具有这些动态特性。">
+<meta name="keywords" content="Cocos2d-x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2d-x 动作、特效和动画">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/Cocos2d-x/Cocos2d-x-动作，特效和动画/index.html">
+<meta property="og:site_name" content="朱家聪的博客">
+<meta property="og:description" content="动作、特效和动画游戏是一个动态的世界，在游戏中跟踪精灵对象都是动态的。在Cocos2d-x中的Node对象就有这些动态特征。在Node类中定义了动作、特效和动画这些动态特征，因此我们在精灵、标签、菜单、地图和粒子系统等都具有这些动态特性。">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/ActionClass.png?e=1494319268&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:5guOiZ9Fs9oYEpnzbpJ4yb69ecs">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/ActionSelect.png?e=1494319848&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:y_ngKiP3Uj_9f0JSJJIBTE3u8yA">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/PianeRunAciton.png?e=1494319912&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:gcQUOba_85n8fcGZ-mbhfFOoZwI">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/ActionIntervalSelect.png?e=1494339987&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:X9ZKbIDXZPmkrCf_tEtjUE_K8RI">
+<meta property="og:image" content="http://op3ueeezt.bkt.clouddn.com/ActionInterval.png?e=1494340265&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:3Z_gJN0mFKuanud1Wa1ori-OCF4">
+<meta property="og:updated_time" content="2017-05-09T13:51:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2d-x 动作、特效和动画">
+<meta name="twitter:description" content="动作、特效和动画游戏是一个动态的世界，在游戏中跟踪精灵对象都是动态的。在Cocos2d-x中的Node对象就有这些动态特征。在Node类中定义了动作、特效和动画这些动态特征，因此我们在精灵、标签、菜单、地图和粒子系统等都具有这些动态特性。">
+<meta name="twitter:image" content="http://op3ueeezt.bkt.clouddn.com/ActionClass.png?e=1494319268&token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:5guOiZ9Fs9oYEpnzbpJ4yb69ecs">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/09/Cocos2d-x/Cocos2d-x-动作，特效和动画/"/>
+
+
+
+
+
+  <title> Cocos2d-x 动作、特效和动画 | 朱家聪的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">朱家聪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/09/Cocos2d-x/Cocos2d-x-动作，特效和动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱家聪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱家聪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2d-x 动作、特效和动画
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-09T13:51:15+08:00">
+                2017-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="动作、特效和动画"><a href="#动作、特效和动画" class="headerlink" title="动作、特效和动画"></a>动作、特效和动画</h1><p>游戏是一个动态的世界，在游戏中跟踪精灵对象都是动态的。在Cocos2d-x中的Node对象就有这些动态特征。在Node类中定义了动作、特效和动画这些动态特征，因此我们在精灵、标签、菜单、地图和粒子系统等都具有这些动态特性。<br><a id="more"></a></p>
+<h2 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h2><p>动作Action类，任意一个节点都可以使用runAction()函数来执行一个动作。Action有三个子类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">FiniteTimeAction   <span class="comment">//由时间来控制的动作类型</span></div><div class="line">Follow             <span class="comment">//跟随动作</span></div><div class="line">Speed              <span class="comment">//在动作运行时改变速率的动作</span></div></pre></td></tr></table></figure>
+<p>而FiniteTimeAction中有两个我们比较常用的子类分类时瞬时动作ActionInstant和间隔动作ActionInterval。<br><img src="http://op3ueeezt.bkt.clouddn.com/ActionClass.png?e=1494319268&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:5guOiZ9Fs9oYEpnzbpJ4yb69ecs" alt="ActionClass"></p>
+<h3 id="动作的执行"><a href="#动作的执行" class="headerlink" title="动作的执行"></a>动作的执行</h3><p>在节点Node类中定义了各种函数来执行动作和停止动作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">node-&gt;runAction(cocos2d::Action *action);   <span class="comment">//执行一个动作</span></div><div class="line">node-&gt;stopAction(cocos2d::Action *action);  <span class="comment">//停止指定的某个动作</span></div><div class="line">node-&gt;stopActionByTag(<span class="keyword">int</span> tag);             <span class="comment">//根据动作的Tag来停止某个动作</span></div><div class="line">node-&gt;stopAllActions();                     <span class="comment">//停止某个Node的所有动作</span></div></pre></td></tr></table></figure>
+<h3 id="瞬时动作"><a href="#瞬时动作" class="headerlink" title="瞬时动作"></a>瞬时动作</h3><p>瞬时动作指的是不做任何等待直接执行的动作，瞬时的意义就在于没有执行的时间，是一个瞬间完成的动作。ActionInstant有很多子类例如翻转，隐藏，移动等。使用如下案例来完成部分动作的使用介绍。<br><img src="http://op3ueeezt.bkt.clouddn.com/ActionSelect.png?e=1494319848&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:y_ngKiP3Uj_9f0JSJJIBTE3u8yA" alt="ActionSelect"><br><img src="http://op3ueeezt.bkt.clouddn.com/PianeRunAciton.png?e=1494319912&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:gcQUOba_85n8fcGZ-mbhfFOoZwI" alt="PianeRunAciton"></p>
+<p>在第一个界面中创建了一个多种动作选择的菜单。点击菜单中的任意动作后切换到第二个界面。在第二个飞机界面中点击<code>Go</code>按钮来执行前一界面中所选择的动作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//背景颜色</span></div><div class="line">Layer *bg = LayerColor::create(Color4B(<span class="number">217</span>, <span class="number">217</span>, <span class="number">217</span>, <span class="number">255</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(bg,<span class="number">0</span>);</div><div class="line"><span class="comment">//飞机精灵</span></div><div class="line">plane = Sprite::create(<span class="string">"Plane.png"</span>);</div><div class="line">plane-&gt;setPosition(Vec2(origin.x+visibleSize.width/<span class="number">2</span>, origin.y+visibleSize.height/<span class="number">2</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(plane);</div><div class="line"><span class="comment">//返回按钮</span></div><div class="line">MenuItemImage *backItem = MenuItemImage::create(<span class="string">"Back-up.png"</span>, <span class="string">"Back-down.png"</span>, CC_CALLBACK_1(ActionScene::backMenu, <span class="keyword">this</span>));</div><div class="line">backItem-&gt;setPosition(Vec2(origin.x + <span class="number">30</span>, origin.y + visibleSize.height - <span class="number">30</span>));</div><div class="line"><span class="comment">//执行动作按钮</span></div><div class="line">MenuItemImage *goItem = MenuItemImage::create(<span class="string">"Go-up.png"</span>, <span class="string">"Go-down.png"</span>, CC_CALLBACK_1(ActionScene::goMenu, <span class="keyword">this</span>));</div><div class="line">goItem-&gt;setPosition(Vec2(origin.x + visibleSize.width / <span class="number">2</span>, origin.y+<span class="number">30</span>));</div><div class="line"></div><div class="line"><span class="comment">//菜单</span></div><div class="line">Menu *m = Menu::create(backItem, goItem, <span class="literal">NULL</span>);</div><div class="line">m-&gt;setPosition(Vec2::ZERO);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(m);</div><div class="line"></div><div class="line"><span class="comment">//当前隐藏状态</span></div><div class="line">hiddenFlag = <span class="literal">true</span>;</div><div class="line"></div><div class="line"><span class="comment">//执行动作</span></div><div class="line"><span class="keyword">void</span> ActionScene::goMenu(Ref *pSender)&#123;</div><div class="line">    <span class="keyword">auto</span> visibleSize = Director::getInstance()-&gt;getVisibleSize();</div><div class="line">    ActionTypes tag = (ActionTypes)<span class="keyword">this</span>-&gt;getTag();</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">//随机点</span></div><div class="line">    Vec2 randPoint = Vec2(CCRANDOM_0_1() * visibleSize.width, CCRANDOM_0_1() * visibleSize.height);</div><div class="line">    <span class="comment">//创建一个空的动作对象</span></div><div class="line">    Action *a;</div><div class="line">    <span class="keyword">switch</span> (tag) &#123;</div><div class="line">        <span class="keyword">case</span> PLACE_TAG:</div><div class="line">            <span class="comment">//place动作  改变节点的位置</span></div><div class="line">            a = Place::create(randPoint);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> FILPX_TAG:</div><div class="line">            <span class="comment">//Y轴翻转动作 左右翻转180度效果</span></div><div class="line">            a = FlipX::create(<span class="literal">true</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> FILPY_TAG:</div><div class="line">            <span class="comment">//X轴翻转效果 上下翻转180度</span></div><div class="line">            a = FlipY::create(<span class="literal">true</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> HIDE_SHOW_TAG:</div><div class="line">            <span class="comment">//隐藏和显示动作</span></div><div class="line">            <span class="keyword">if</span> (hiddenFlag) &#123;</div><div class="line">                hiddenFlag = <span class="literal">false</span>;</div><div class="line">                a = Hide::create();</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                hiddenFlag = <span class="literal">true</span>;</div><div class="line">                a = Show::create();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> TOGGLE_TAG:</div><div class="line">            <span class="comment">//开关显示动作，不需要手动判断，自动进行切换</span></div><div class="line">            a = ToggleVisibility::create();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//执行动作a</span></div><div class="line">    plane-&gt;runAction(a);</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="comment">//返回前一界面</span></div><div class="line"><span class="keyword">void</span> ActionScene::backMenu(Ref *pSender)&#123;</div><div class="line">    StartGameScene *start = StartGameScene::create();</div><div class="line">    <span class="keyword">auto</span> reScene = TransitionSlideInL::create(<span class="number">0.5f</span>, start);</div><div class="line">    Director::getInstance()-&gt;replaceScene(reScene);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="间隔动作"><a href="#间隔动作" class="headerlink" title="间隔动作"></a>间隔动作</h3><p>间隔动作可以理解为持续性的动作，比瞬时动作多了一个持续时间的参数。可以执行间隔动作的有移动、跳跃、贝塞尔曲线移动、旋转、闪烁、变色、淡入淡出。和瞬时动作一样，首先创建动作类型选择界面，然后在动作界面中执行所选择的间隔动作。<br><img src="http://op3ueeezt.bkt.clouddn.com/ActionIntervalSelect.png?e=1494339987&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:X9ZKbIDXZPmkrCf_tEtjUE_K8RI" alt="ActionIntervalSelect"><br><img src="http://op3ueeezt.bkt.clouddn.com/ActionInterval.png?e=1494340265&amp;token=aOj4EsDaxuRDQn7tKN7o2UNvPnGLnLhpoJ8R7jWV:3Z_gJN0mFKuanud1Wa1ori-OCF4" alt="ActionInterval"></p>
+<p>动作的执行代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UI界面构建</span></div><div class="line">MenuItemImage *back = MenuItemImage::create(<span class="string">"Back-up.png"</span>, <span class="string">"Back-down.png"</span>, CC_CALLBACK_1(ActionScene::back, <span class="keyword">this</span>));</div><div class="line">back-&gt;setPosition(Vec2(origin.x+<span class="number">20</span>, origin.y+visibleSize.height - <span class="number">20</span>));</div><div class="line">MenuItemImage *go = MenuItemImage::create(<span class="string">"Go-up.png"</span>, <span class="string">"Go-down.png"</span>, CC_CALLBACK_1(ActionScene::go, <span class="keyword">this</span>));</div><div class="line">go-&gt;setPosition(Vec2(origin.x+visibleSize.width/<span class="number">2</span>, <span class="number">50</span>));</div><div class="line">Menu *m = Menu::create(back, go, <span class="literal">NULL</span>);</div><div class="line">m-&gt;setPosition(Vec2::ZERO);</div><div class="line"><span class="keyword">this</span>-&gt;addChild(m);</div><div class="line">hero = Sprite::create(<span class="string">"hero.png"</span>);</div><div class="line">hero-&gt;setPosition(Vec2(origin.x+visibleSize.width/<span class="number">2</span>, origin.y+visibleSize.height/<span class="number">2</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(hero);</div><div class="line"></div><div class="line"><span class="comment">//go按钮点击</span></div><div class="line"><span class="keyword">void</span> ActionScene::go(cocos2d::Ref *pSender)&#123;</div><div class="line">    ActionTypes tag = (ActionTypes)<span class="keyword">this</span>-&gt;getTag();</div><div class="line">    <span class="keyword">auto</span> visibleSize = Director::getInstance()-&gt;getVisibleSize();</div><div class="line"></div><div class="line">    <span class="keyword">float</span> duration = CCRANDOM_0_1() * <span class="number">1.0f</span> + <span class="number">1.0f</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//随机坐标位置</span></div><div class="line">    Vec2 position = Vec2(visibleSize.width * CCRANDOM_0_1(), visibleSize.height*CCRANDOM_0_1());</div><div class="line">    <span class="comment">//当前状态hero的位置</span></div><div class="line">    Vec2 heroPosition = hero-&gt;getPosition();</div><div class="line">    <span class="comment">//随机的跳跃次数和跳跃高度</span></div><div class="line">    <span class="keyword">float</span> jumpHeight = CCRANDOM_0_1() * <span class="number">50</span>;</div><div class="line">    <span class="keyword">int</span> jumpCount = CCRANDOM_0_1() * <span class="number">9</span> + <span class="number">1</span>;</div><div class="line">    <span class="comment">//随机缩放倍数</span></div><div class="line">    <span class="keyword">float</span> scale = CCRANDOM_0_1() * <span class="number">5</span>;</div><div class="line">    <span class="comment">//贝塞尔曲线参数</span></div><div class="line">    ccBezierConfig bezierConfig;</div><div class="line">    <span class="comment">//旋转角度  -360 ～ 360</span></div><div class="line">    <span class="keyword">float</span> rotate = CCRANDOM_0_1() * <span class="number">720</span> - <span class="number">360</span>;</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    Color3B color = Color3B(CCRANDOM_0_1()*<span class="number">255</span>, CCRANDOM_0_1()*<span class="number">255</span>, CCRANDOM_0_1()*<span class="number">255</span>);</div><div class="line">    Action *a;</div><div class="line">    </div><div class="line">    <span class="keyword">switch</span> (tag) &#123;</div><div class="line">        <span class="keyword">case</span> kMoveTo:</div><div class="line">            a = MoveTo::create(duration, position);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kMoveBy:</div><div class="line">            a = MoveBy::create(duration, position-heroPosition);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kJumpTo:</div><div class="line">            a = JumpTo::create(duration, position, jumpHeight, jumpCount);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kJumpBy:</div><div class="line">            a = JumpBy::create(duration, position-heroPosition, jumpHeight, jumpCount);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kBezierBy:</div><div class="line">            <span class="comment">/*</span></div><div class="line">             贝塞尔曲线动作：</div><div class="line">             需要设置两个控制点和一个结束点</div><div class="line">             结束点是已当前节点位置为参考系的相对坐标</div><div class="line">             */</div><div class="line">            bezierConfig.controlPoint_1 = Vec2(<span class="number">0</span>,visibleSize.height);</div><div class="line">            bezierConfig.controlPoint_2 = Vec2(visibleSize.width, <span class="number">0</span>);</div><div class="line">            bezierConfig.endPosition = position - heroPosition;</div><div class="line">            a = BezierBy::create(<span class="number">3</span>, bezierConfig);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kScaleTo:</div><div class="line">            a = ScaleTo::create(duration, scale, scale);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">            </div><div class="line">        <span class="keyword">case</span> kScaleBy:</div><div class="line">            a = ScaleBy::create(duration, scale/hero-&gt;getScale(), scale/hero-&gt;getScale());</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">            </div><div class="line">        <span class="keyword">case</span> kRotateTo:</div><div class="line">            a = RotateTo::create(duration, rotate);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kRotateBy:</div><div class="line">            a = RotateBy::create(duration, rotate - hero-&gt;getRotation());</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kBlink:</div><div class="line">            <span class="comment">/*</span></div><div class="line">             Blink 闪烁动作</div><div class="line">             duration 闪烁的时间</div><div class="line">             bilnk 闪烁的次数</div><div class="line">             */</div><div class="line">            a = Blink::create(duration, <span class="number">3</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kTintTo:</div><div class="line">            <span class="comment">//颜色变换</span></div><div class="line">            a = TintTo::create(duration, color);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kTintBy:</div><div class="line">            <span class="comment">//需要对GRB值分别计算</span></div><div class="line">            a = TintBy::create(duration,</div><div class="line">                               color.r-hero-&gt;getColor().r,</div><div class="line">                               color.g-hero-&gt;getColor().g,</div><div class="line">                               color.b-hero-&gt;getColor().b);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kFadeTo:</div><div class="line">            <span class="comment">//改变不透明度   80代表80%不透明度</span></div><div class="line">            a = FadeTo::create(duration, <span class="number">80</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kFadeIn:</div><div class="line">            <span class="comment">//淡入 节点从透明变为不透明，需要事先将节点设置为半透明</span></div><div class="line">            <span class="comment">// hero-&gt;setOpacity(10);</span></div><div class="line">            a = FadeIn::create(duration);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> kFadeOut:</div><div class="line">            <span class="comment">//淡出 节点从不透明变为透明直至消失</span></div><div class="line">            a = FadeOut::create(duration);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">            </div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    hero-&gt;runAction(a);   </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//FadeIn动作 事先设置透明度</span></div><div class="line"><span class="keyword">void</span> ActionScene::setTag(<span class="keyword">int</span> t)&#123;</div><div class="line">    _tag = t;</div><div class="line">    <span class="keyword">if</span> (_tag == kFadeIn) &#123;</div><div class="line">        hero-&gt;setOpacity(<span class="number">10</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在执行间隔动作时，可以发现同一个动作类型通常有两种创建方式，例如moveTo和moveBy。区别在于所设置的参数所对应的参考系不同。moveTo是以节点所在的父节点作为坐标系来设置节点的位置，而moveBy是以当前节点自身作为参考系进行相对的移动/缩放/旋转的。所以所设置的参数需要和当前节点自身的数值进行计算出一个相对数值在进行设置。</p>
+<h2 id="特效"><a href="#特效" class="headerlink" title="特效"></a>特效</h2><h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2d-x/" rel="tag"># Cocos2d-x</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/08/Cocos2d-x/Cocos2d-x-场景与层/" rel="prev" title="Cocos2d-x 场景与层">
+                Cocos2d-x 场景与层 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="朱家聪" />
+          <p class="site-author-name" itemprop="name">朱家聪</p>
+           
+              <p class="site-description motion-element" itemprop="description">这里是一个学渣程序员的进步之路，而非技术大牛的心得分享。如在博客中出现技术错误，请各位兄弟联系我并改正：731340034@qq.com</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhengyiqun.com/" title="郑逸群小鲜肉的技术分享" target="_blank">郑逸群小鲜肉的技术分享</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动作、特效和动画"><span class="nav-number">1.</span> <span class="nav-text">动作、特效和动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动作"><span class="nav-number">1.1.</span> <span class="nav-text">动作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动作的执行"><span class="nav-number">1.1.1.</span> <span class="nav-text">动作的执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瞬时动作"><span class="nav-number">1.1.2.</span> <span class="nav-text">瞬时动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间隔动作"><span class="nav-number">1.1.3.</span> <span class="nav-text">间隔动作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特效"><span class="nav-number">1.2.</span> <span class="nav-text">特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">1.3.</span> <span class="nav-text">动画</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱家聪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
