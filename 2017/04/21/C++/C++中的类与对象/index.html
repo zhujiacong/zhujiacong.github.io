@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/21/C++/C++中的类与对象/index.html">
 <meta property="og:site_name" content="朱家聪的博客">
 <meta property="og:description" content="C++的基本语法include与C语言中相同，使用#include能够包含系统库和头文件。不能使用#import来进行包含。在C++中所要包含的基础库是iostream。当然也能使用C语言中的标准输入输出库stdio.h，但是在使用时建议使用在C++中的写法。">
-<meta property="og:updated_time" content="2017-04-25T03:19:50.000Z">
+<meta property="og:updated_time" content="2017-05-17T08:14:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++中的类与对象（一）">
 <meta name="twitter:description" content="C++的基本语法include与C语言中相同，使用#include能够包含系统库和头文件。不能使用#import来进行包含。在C++中所要包含的基础库是iostream。当然也能使用C语言中的标准输入输出库stdio.h，但是在使用时建议使用在C++中的写法。">
@@ -386,7 +386,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//第一种写法</span></div><div class="line">User(<span class="built_in">string</span> s1, <span class="built_in">string</span> s2)&#123;</div><div class="line">    username = s1;</div><div class="line">    password = s2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//第二种写法</span></div><div class="line">User(<span class="built_in">string</span> s1, <span class="built_in">string</span> s2):username(s1),password(s2)&#123;&#125;</div><div class="line"></div><div class="line"><span class="function">User <span class="title">user1</span><span class="params">(<span class="string">"zhujiacong"</span>, <span class="string">"12345"</span>)</span></span>;  <span class="comment">//创建一个user1对象，并且自动初始化用户名和密码</span></div></pre></td></tr></table></figure>
 <h3 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h3><p>在构造函数的参数后面，可以添加一个默认值。这样在创建对象时如果没有传入合适的参数，就会使用默认参数进行创建。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User(<span class="built_in">string</span> s1=<span class="string">"zhujiacong"</span>, <span class="built_in">string</span> s2=<span class="string">"123456"</span>):username(s1),password(s2)&#123;&#125;</div></pre></td></tr></table></figure>
-<h3 id="复制构造函数的调用时机"><a href="#复制构造函数的调用时机" class="headerlink" title="复制构造函数的调用时机"></a>复制构造函数的调用时机</h3><p>当我们在初始化一个对象时，需要从另一个已有对象进行属性值的复制，此时就会调用==复制构造函数==。如下代码创建的user2和user3中的属性的值和user1完全一致。但是通过打印变量所在的内存地址可知他们和user1并不是同一个对象。这个机制类似于OC中的copy方法，是一种深拷贝。</p>
+<h3 id="复制构造函数的调用时机"><a href="#复制构造函数的调用时机" class="headerlink" title="复制构造函数的调用时机"></a>复制构造函数的调用时机</h3><p>当我们在初始化一个对象时，需要从另一个已有对象进行属性值的复制，此时就会调用复制构造函数。如下代码创建的user2和user3中的属性的值和user1完全一致。但是通过打印变量所在的内存地址可知他们和user1并不是同一个对象。这个机制类似于OC中的copy方法，是一种深拷贝。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">User user1;</div><div class="line">user1.setUsername(<span class="string">"zhujiacong"</span>);</div><div class="line">user1.setPassword(<span class="string">"123456"</span>);</div><div class="line">user1.printUserInfo();</div><div class="line"></div><div class="line"><span class="function">User <span class="title">user2</span><span class="params">(user1)</span></span>;</div><div class="line">user2.printUserInfo();</div><div class="line">User user3 = user1;</div><div class="line">user3.printUserInfo();</div></pre></td></tr></table></figure>
 <p>还有两种情况下系统也会调用复制构造函数分别是：</p>
 <ol>
@@ -528,7 +528,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

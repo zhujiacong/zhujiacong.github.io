@@ -1,0 +1,755 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2d-x," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="游戏背景音乐和音效在一个完整的游戏中，音频是必不可少的部分，而音频又分为背景音乐和音效两部分。背景音乐指的是在场景中长时间循环播放的音频，会占用比较大的内存空间。同一时间只能播放一个背景音乐。音效指的是在游戏进程中偶尔出现的声音，比如游戏角色执行一个动作时所对应的发出的声音。这种音频相对来说占用更少的时间和内存资源。可以允许有多个音效同时存在。在Cocos2d-x中提供了Audio音频引擎用于对背">
+<meta name="keywords" content="Cocos2d-x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2d-x游戏背景音乐和音效">
+<meta property="og:url" content="http://yoursite.com/2017/06/01/Cocos2d-x/08Cocos2d-x游戏背景音乐和音效/index.html">
+<meta property="og:site_name" content="朱家聪的博客">
+<meta property="og:description" content="游戏背景音乐和音效在一个完整的游戏中，音频是必不可少的部分，而音频又分为背景音乐和音效两部分。背景音乐指的是在场景中长时间循环播放的音频，会占用比较大的内存空间。同一时间只能播放一个背景音乐。音效指的是在游戏进程中偶尔出现的声音，比如游戏角色执行一个动作时所对应的发出的声音。这种音频相对来说占用更少的时间和内存资源。可以允许有多个音效同时存在。在Cocos2d-x中提供了Audio音频引擎用于对背">
+<meta property="og:updated_time" content="2017-06-01T09:28:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2d-x游戏背景音乐和音效">
+<meta name="twitter:description" content="游戏背景音乐和音效在一个完整的游戏中，音频是必不可少的部分，而音频又分为背景音乐和音效两部分。背景音乐指的是在场景中长时间循环播放的音频，会占用比较大的内存空间。同一时间只能播放一个背景音乐。音效指的是在游戏进程中偶尔出现的声音，比如游戏角色执行一个动作时所对应的发出的声音。这种音频相对来说占用更少的时间和内存资源。可以允许有多个音效同时存在。在Cocos2d-x中提供了Audio音频引擎用于对背">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/01/Cocos2d-x/08Cocos2d-x游戏背景音乐和音效/"/>
+
+
+
+
+
+  <title> Cocos2d-x游戏背景音乐和音效 | 朱家聪的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">朱家聪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/01/Cocos2d-x/08Cocos2d-x游戏背景音乐和音效/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱家聪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱家聪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2d-x游戏背景音乐和音效
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-01T11:41:53+08:00">
+                2017-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="游戏背景音乐和音效"><a href="#游戏背景音乐和音效" class="headerlink" title="游戏背景音乐和音效"></a>游戏背景音乐和音效</h1><p>在一个完整的游戏中，音频是必不可少的部分，而音频又分为背景音乐和音效两部分。背景音乐指的是在场景中长时间循环播放的音频，会占用比较大的内存空间。同一时间只能播放一个背景音乐。音效指的是在游戏进程中偶尔出现的声音，比如游戏角色执行一个动作时所对应的发出的声音。这种音频相对来说占用更少的时间和内存资源。可以允许有多个音效同时存在。在Cocos2d-x中提供了Audio音频引擎用于对背景音乐和音效的播放管理。</p>
+<a id="more"></a>
+<h2 id="音频文件类型"><a href="#音频文件类型" class="headerlink" title="音频文件类型"></a>音频文件类型</h2><p>由于Cocos2d-x是一个跨平台的游戏引擎，所以在游戏中的音频文件也要考虑到多种平台的文件兼容性。而音频文件又可以分为无损格式和有损格式，再考虑到游戏本体容量的时候，就需要对不同格式进行选择。</p>
+<h3 id="常用音频文件格式"><a href="#常用音频文件格式" class="headerlink" title="常用音频文件格式"></a>常用音频文件格式</h3><table>
+<thead>
+<tr>
+<th>格式名称</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WAV</td>
+<td>目前最流行的无损压缩格式，但是文件体积比较大，不适于移动设备使用。</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>通过MPEG audio layer 3技术，讲音频文件已1:10 甚至1:12的压缩比例压缩成更小体积的文件，具有压缩比例高，损失相对较小的特点，非常适合移动设备使用。</td>
+</tr>
+<tr>
+<td>WMA</td>
+<td>WMA（Windows Media Audio）是微软发布的一款有损压缩格式，常用于Windows平台下。其压缩率和音频质量和MP3不相上下。</td>
+</tr>
+<tr>
+<td>CAFF</td>
+<td>CAFF（Core Audio File Fomat）是苹果在macOS和iOS系统中所使用的有损压缩格式，等价于WMA在Windows中的地位。</td>
+</tr>
+<tr>
+<td>AIFF</td>
+<td>AIFF（Audio Interchange File Fomat）苹果开发的专业音频文件格式，具有1:4的压缩率，专门运用于macOS和iOS系统。</td>
+</tr>
+<tr>
+<td>MID</td>
+<td>MID文件是MIDI（Musical Instrument Digital Interface）格式，即专业音频格式，允许数字合成器和其他设备交换数据。</td>
+</tr>
+<tr>
+<td>Ogg</td>
+<td>OGGVobis，是一种全新的音频压缩格式，类似于MP3等格式。这是一种完全免费，开发，没有专利限制的音频格式。Ogg文件格式可以不断地进行大小和音质的改良，而不影响旧有的编码器和播放器。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="跨平台音频文件支持性"><a href="#跨平台音频文件支持性" class="headerlink" title="跨平台音频文件支持性"></a>跨平台音频文件支持性</h3><p>由于Cocos2d-x可以支持iOS，Android，Windows、Mac和Linux等操作系统。但是不同操作系统中对于音频文件的格式要求又会有不同的区别，所以通过简单整理来总结一下各平台下所支持的音频格式类型。</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>背景音乐播放</th>
+<th>音效播放</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android</td>
+<td>android.media.MediaPlayer</td>
+<td>Ogg（推荐）、WAV</td>
+</tr>
+<tr>
+<td>iOS/macOS</td>
+<td>MP3、CAFF</td>
+<td>CAFF</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>MIDI、WAV、MP3</td>
+<td>MIDI、WAV</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用Audio引擎播放背景音乐"><a href="#使用Audio引擎播放背景音乐" class="headerlink" title="使用Audio引擎播放背景音乐"></a>使用Audio引擎播放背景音乐</h2><h3 id="音频文件预处理"><a href="#音频文件预处理" class="headerlink" title="音频文件预处理"></a>音频文件预处理</h3><p>在开始播放音频文件之前，我们需要对音频进行预处理，预处理是对音频文件进行解压等处理。如果不进行预处理，播放的音频则会出现卡顿等情况。在整个程序运行周期中只需要进行一次即可，所以一般我们选择在AppDelegate中对所需要用到的音频进行预处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"audio/include/SimpleAudioEngine.h"</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> CocosDenshion;</div><div class="line"><span class="keyword">bool</span> AppDelegate::applicationDidFinishLaunching() &#123;</div><div class="line">    <span class="comment">// run</span></div><div class="line">    director-&gt;runWithScene(scene);</div><div class="line"></div><div class="line">    <span class="comment">//预处理背景音乐音频文件</span></div><div class="line">    SimpleAudioEngine::getInstance()-&gt;preloadBackgroundMusic(<span class="string">"sound/Jazz.mp3"</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="播放和停止背景音乐"><a href="#播放和停止背景音乐" class="headerlink" title="播放和停止背景音乐"></a>播放和停止背景音乐</h3><p>我们可以通过SimpleAudioEngine音频播放引擎来简单的播放操作</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//播放背景音乐  第二个参数为是否循环播放</span></div><div class="line">SimpleAudioEngine::getInstance()-&gt;playBackgroundMusic(<span class="string">"sound/Jazz.mp3"</span>, <span class="literal">true</span>);</div><div class="line"><span class="comment">//停止播放当前的背景音乐</span></div><div class="line">SimpleAudioEngine::getInstance()-&gt;stopBackgroundMusic();</div></pre></td></tr></table></figure>
+<p>如果在一个游戏中只有一个场景，这个场景中只有一个背景音乐，那么直接在当前场景的init函数中播放背景音乐，在场景的onExit函数中停止播放即可。但是我们的游戏一般都是由多个场景构成的，每个场景都有自己的背景音乐。如何在这些场景切换时合理的控制各个背景音乐的播放和暂停是我们需要研究的内容。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2d-x/" rel="tag"># Cocos2d-x</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/16/Cocos2d-x/07Cocos2d-x用户事件/" rel="prev" title="Cocos2d-x 用户事件">
+                Cocos2d-x 用户事件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="朱家聪" />
+          <p class="site-author-name" itemprop="name">朱家聪</p>
+           
+              <p class="site-description motion-element" itemprop="description">这里是一个学渣程序员的进步之路，而非技术大牛的心得分享。如在博客中出现技术错误，请各位兄弟联系我并改正：731340034@qq.com</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhengyiqun.com/" title="郑逸群小鲜肉的技术分享" target="_blank">郑逸群小鲜肉的技术分享</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏背景音乐和音效"><span class="nav-number">1.</span> <span class="nav-text">游戏背景音乐和音效</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#音频文件类型"><span class="nav-number">1.1.</span> <span class="nav-text">音频文件类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用音频文件格式"><span class="nav-number">1.1.1.</span> <span class="nav-text">常用音频文件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨平台音频文件支持性"><span class="nav-number">1.1.2.</span> <span class="nav-text">跨平台音频文件支持性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Audio引擎播放背景音乐"><span class="nav-number">1.2.</span> <span class="nav-text">使用Audio引擎播放背景音乐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#音频文件预处理"><span class="nav-number">1.2.1.</span> <span class="nav-text">音频文件预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放和停止背景音乐"><span class="nav-number">1.2.2.</span> <span class="nav-text">播放和停止背景音乐</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱家聪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
